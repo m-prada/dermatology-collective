@@ -2087,38 +2087,34 @@ a{color:inherit}button,input{font:inherit}
 .sga-card-icon svg{display:block !important;width:10.4rem !important;height:6.8rem !important;margin:0 auto !important;translate:none !important;transform:none !important;}
 .card-labels .sga-card-icon svg,.card-evidence .sga-card-icon svg{translate:none !important;transform:none !important;margin-inline:auto !important;}
 </style>
+<link rel="stylesheet" href="css/site-nav.css">
+<script src="js/site-nav.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <a class="brand brand-textonly" href="#top" aria-label="Dermatology Collective home">
-        <span class="brand-copy">
-          <strong>Dermatology Collective</strong>
-          <small>Johns Hopkins University</small>
-        </span>
+      <a class="brand brand-textonly" href="index.html" aria-label="Dermatology Collective home">
+        <span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span>
       </a>
-
-      <nav class="desktop-nav" aria-label="Homepage navigation">
+      <nav class="desktop-nav" aria-label="Main navigation">
         <a href="learn.html">Learn</a>
         <a href="ingredient-lab.html">Ingredient Lab</a>
         <a href="formulation-watcher.html">Formulation Watcher</a>
         <a href="#contact">Contact</a>
       </nav>
-
-      <button class="menu-button" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="learn.html">Learn</a>
+        <a href="ingredient-lab.html">Ingredient Lab</a>
+        <a href="formulation-watcher.html">Formulation Watcher</a>
+        <a href="#contact">Contact</a>
+    </nav>
   </header>
-
-  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile homepage navigation">
-    <a href="learn.html">Learn</a>
-    <a href="ingredient-lab.html">Ingredient Lab</a>
-    <a href="formulation-watcher.html">Formulation Watcher</a>
-    <a href="#contact">Contact</a>
-  </nav>
 
   <main id="main">
     
@@ -3302,18 +3298,6 @@ heroField?.addEventListener('pointerleave', () => { pointer.x = -9999; pointer.y
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 drawDots();
-
-/* Mobile menu */
-const menuButton = document.getElementById('menuButton');
-const mobileNav = document.getElementById('mobileNav');
-menuButton?.addEventListener('click', () => {
-  const open = mobileNav.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(open));
-});
-mobileNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mobileNav.classList.remove('open');
-  menuButton.setAttribute('aria-expanded','false');
-}));
 
 /* Contact placeholder so the page does not ship with a fake email. */
 const contactButton = document.getElementById('contactButton');

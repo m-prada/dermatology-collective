@@ -286,21 +286,35 @@ button{cursor:pointer}
 .toolbar-actions select{max-width:11rem;min-height:2.3rem;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.3rem}
 @media(max-width:760px){.toolbar{flex-wrap:wrap}.toolbar-actions{width:100%}}
 </style>
+<link rel="stylesheet" href="css/site-nav.css">
+<script src="js/site-nav.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html"><span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span></a>
-    <nav class="nav">
-      <a href="learn.html">Learn</a>
-      <a href="ingredient-lab.html">Ingredient Lab</a>
-      <a class="active" href="formulation-watcher.html">Formulation Watcher</a>
-      <a href="index.html#contact">Contact</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand brand-textonly" href="index.html" aria-label="Dermatology Collective home">
+        <span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="learn.html">Learn</a>
+        <a href="ingredient-lab.html">Ingredient Lab</a>
+        <a href="formulation-watcher.html" aria-current="page">Formulation Watcher</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="learn.html">Learn</a>
+        <a href="ingredient-lab.html">Ingredient Lab</a>
+        <a href="formulation-watcher.html" aria-current="page">Formulation Watcher</a>
+        <a href="index.html#contact">Contact</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main>
+<main id="main">
 <section class="hero">
   <div class="container hero-shell">
     <div>
