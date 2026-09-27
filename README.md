@@ -1,35 +1,37 @@
 # Dermatology Collective Homepage
 
-A dependency-free homepage prototype for the Johns Hopkins Dermatology Collective.
+This is a **homepage-only** static site for the Johns Hopkins Dermatology Collective.
 
-## What is included
+It intentionally does **not** create Learn, Ingredient Lab, Derm Challenge, Tools, or About pages yet.
 
-- JHU-inspired editorial homepage aesthetic based on the provided `jhusga-main` repository
-- Interactive cursor-responsive skin cross-section
-- Magnifying "micro-detail" lens
-- Hover/focus anatomy callouts
-- Cursor-reactive particle field and subtle 3D tilt
-- Featured-learning section
-- Functional myth/fact knowledge check
-- Functional Ingredient Lab demo search
-- Watchlist interaction
-- Formulation Tracker preview
-- Evidence/methodology section
-- Dermatology Collective + contact section
-- Mobile navigation
-- Reduced-motion accessibility support
+## Design basis
+
+The visual system was rebuilt after reviewing the supplied JHU SGA repository, especially:
+
+- `app/page.tsx`
+- `app/home.module.css`
+- `app/(components)/Header.tsx`
+- `app/(components)/Header.module.css`
+- `app/(components)/BlueJayAsciiVideo.tsx`
+
+The homepage borrows the SGA site's high-level design language:
+
+- Source Serif 4 + Work Sans
+- Hopkins blue
+- large editorial hero typography
+- section numbering
+- thin divider rules
+- restrained uppercase labels
+- interactive hero field
+- understated arrow motion
+
+The dermatology illustration and cursor interactions are original.
 
 ## Anatomy reference
 
-The original SVG illustration was drawn specifically for this prototype and is *not* copied from OpenStax.
-Its structure is informed by:
+The hero model is an original simplified SVG whose structure is informed by OpenStax Anatomy & Physiology 2e, Section 5.1, "Layers of the Skin."
 
-OpenStax, Anatomy & Physiology 2e:
-- 5.1 Layers of the Skin
-- 5.2 Accessory Structures of the Skin
-
-The model includes a simplified epidermis, dermis, hypodermis, hair follicle,
-sebaceous gland, eccrine sweat gland, vessels, and sensory structures.
+https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin
 
 ## Files
 
@@ -37,39 +39,28 @@ sebaceous gland, eccrine sweat gland, vessels, and sensory structures.
 - `styles.css`
 - `script.js`
 
-No build step or dependencies are required.
+No package install or build step is required.
 
-## View locally
+## Replace the current GitHub Pages site
 
-### Easiest
-Double-click `index.html`.
+In your `dermatology-collective` GitHub repository, replace the existing:
 
-### Better local preview
-From this folder:
+- `index.html`
+- `styles.css`
+- `script.js`
 
-```bash
-python -m http.server 8000
-```
+with the versions in this folder.
 
-Then visit:
+Keep `index.html` at the repository root.
 
-`http://localhost:8000`
+GitHub Pages can stay configured as:
 
-## Publish with GitHub Pages
+- Source: Deploy from a branch
+- Branch: `main`
+- Folder: `/ (root)`
 
-1. Create a GitHub repository, for example `dermatology-collective`.
-2. Upload `index.html`, `styles.css`, and `script.js` to the repository root.
-3. Commit the files.
-4. Open **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Choose branch `main` and folder `/ (root)`.
-7. Click **Save**.
-8. GitHub will show your public `github.io` URL after deployment.
+After committing the replacements, GitHub Pages will redeploy automatically.
 
-## Before public launch
+## Important before public launch
 
-- Replace the placeholder contact email in `index.html`.
-- Build real Learn / Ingredient Lab pages before removing "coming next" placeholders.
-- Use only medically reviewed, properly sourced educational claims.
-- Do not republish proprietary AAD worksheets/slides without permission.
-- Replace demo Ingredient Lab counts with real verified data.
+The contact button intentionally does not use a guessed club email. Replace it with the official Dermatology Collective email or form when you have it.

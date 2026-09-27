@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive dermatology education from the Johns Hopkins Dermatology Collective." />
+  <meta name="theme-color" content="#002d72" />
+  <title>Dermatology Collective | Johns Hopkins University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Work+Sans:wght@400;500;600;650;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Dermatology Collective home">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span class="brand-copy">
+          <strong>Dermatology Collective</strong>
+          <small>Johns Hopkins University</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Homepage navigation">
+        <a href="#platform">Platform</a>
+        <a href="#collective">The Collective</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-button" id="menuButton" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile homepage navigation">
+    <a href="#platform">Platform</a>
+    <a href="#collective">The Collective</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="session"><span></span>A project of the Johns Hopkins Dermatology Collective</p>
+        <h1>Understand<br>your skin.</h1>
+        <p class="hero-summary">
+          A student-built dermatology education platform that makes skin biology,
+          evidence, and product labels easier to explore and understand.
+        </p>
+        <a class="primary-link" href="#platform">
+          <span>See what we're building</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="hero-field" id="heroField" aria-hidden="true">
+        <canvas id="particleCanvas"></canvas>
+        <div class="skin-shell" id="skinShell">
+          <svg id="skinModel" viewBox="0 0 760 600" role="presentation">
+            <defs>
+              <linearGradient id="epiGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f5c9b1" />
+                <stop offset="100%" stop-color="#db9378" />
+              </linearGradient>
+              <linearGradient id="dermisGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e8b99b" />
+                <stop offset="100%" stop-color="#d38c70" />
+              </linearGradient>
+              <linearGradient id="hypoGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#efd28e" />
+                <stop offset="100%" stop-color="#d6b459" />
+              </linearGradient>
+              <filter id="modelShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="22" stdDeviation="20" flood-color="#092641" flood-opacity="0.18" />
+              </filter>
+              <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <clipPath id="skinClip">
+                <rect x="92" y="90" width="570" height="390" rx="44" />
+              </clipPath>
+              <clipPath id="lensClip">
+                <circle id="lensClipCircle" cx="-200" cy="-200" r="82" />
+              </clipPath>
+            </defs>
+
+            <g filter="url(#modelShadow)">
+              <rect x="92" y="90" width="570" height="390" rx="44" fill="#fbf8f2" />
+              <g clip-path="url(#skinClip)">
+                <g class="model-part" data-part="epidermis">
+                  <path d="M92 119 C154 83 221 132 289 107 C355 83 414 126 489 102 C553 81 614 111 662 97 L662 182 L92 182 Z" fill="url(#epiGrad)"/>
+                  <path d="M92 165 C173 145 226 193 300 164 C373 136 442 190 512 159 C574 132 616 162 662 149" fill="none" stroke="#b7705c" stroke-width="2.4" opacity=".65" />
+                </g>
+
+                <g class="model-part" data-part="dermis">
+                  <rect x="92" y="182" width="570" height="201" fill="url(#dermisGrad)" />
+                  <g opacity=".20" stroke="#754a42" stroke-width="2">
+                    <path d="M108 223 C177 196 232 243 300 217 S433 245 506 219 S606 234 646 216" fill="none"/>
+                    <path d="M110 275 C183 246 236 296 310 267 S447 301 522 271 S607 288 647 269" fill="none"/>
+                    <path d="M105 327 C182 300 245 347 318 319 S455 352 528 323 S611 341 646 324" fill="none"/>
+                  </g>
+                </g>
+
+                <g class="model-part" data-part="hypodermis">
+                  <rect x="92" y="383" width="570" height="97" fill="url(#hypoGrad)" />
+                  <g fill="#efd98f" stroke="#bf9d45" stroke-width="1.4">
+                    <ellipse cx="128" cy="411" rx="31" ry="22"/>
+                    <ellipse cx="180" cy="451" rx="37" ry="27"/>
+                    <ellipse cx="236" cy="411" rx="35" ry="24"/>
+                    <ellipse cx="294" cy="451" rx="38" ry="27"/>
+                    <ellipse cx="354" cy="410" rx="35" ry="24"/>
+                    <ellipse cx="414" cy="450" rx="39" ry="27"/>
+                    <ellipse cx="474" cy="410" rx="36" ry="24"/>
+                    <ellipse cx="534" cy="449" rx="39" ry="27"/>
+                    <ellipse cx="594" cy="409" rx="34" ry="24"/>
+                    <ellipse cx="644" cy="451" rx="34" ry="24"/>
+                  </g>
+                </g>
+
+                <g class="model-part" data-part="hair">
+                  <path d="M425 60 C431 120 434 178 438 231 C443 281 451 338 463 394" stroke="#173752" stroke-width="9" stroke-linecap="round" fill="none" />
+                  <path d="M430 167 C469 176 481 221 478 285 C475 337 464 380 461 410 C454 441 421 444 413 408 C417 358 426 320 426 277 C426 226 420 196 410 176 C416 171 423 168 430 167Z" fill="#f4d2c0" stroke="#8e5a4e" stroke-width="4" />
+                  <path d="M449 392 C441 417 440 430 461 439 C485 434 485 413 462 396Z" fill="#825245" opacity=".82" />
+                </g>
+
+                <g class="model-part" data-part="sebaceous">
+                  <g fill="#5da9a3" stroke="#2f756f" stroke-width="2.6">
+                    <ellipse cx="500" cy="229" rx="31" ry="23"/>
+                    <ellipse cx="521" cy="248" rx="27" ry="21"/>
+                    <ellipse cx="493" cy="260" rx="25" ry="20"/>
+                  </g>
+                  <path d="M478 241 C463 243 452 250 441 260" stroke="#2f756f" stroke-width="6" stroke-linecap="round" fill="none" />
+                </g>
+
+                <g class="model-part" data-part="sweat">
+                  <path d="M249 201 C247 252 251 289 249 329" fill="none" stroke="#337caf" stroke-width="5" stroke-linecap="round" />
+                  <path d="M249 201 C249 176 250 151 255 127" fill="none" stroke="#337caf" stroke-width="4" stroke-linecap="round" />
+                  <path d="M220 336 C193 345 193 367 217 372 C243 378 255 354 237 340 C219 325 193 334 194 355 C195 381 226 389 246 374 C265 359 256 333 233 330" fill="none" stroke="#337caf" stroke-width="7" stroke-linecap="round" />
+                </g>
+
+                <g class="model-part" data-part="vessels">
+                  <path d="M114 417 C198 379 254 417 316 394 C373 373 448 407 521 389 C573 376 614 389 662 372" fill="none" stroke="#cb5d5d" stroke-width="8" stroke-linecap="round" />
+                  <path d="M114 441 C202 411 257 447 324 422 C389 398 449 432 522 411 C575 396 616 413 662 398" fill="none" stroke="#3e82b5" stroke-width="8" stroke-linecap="round" />
+                  <path d="M331 397 C333 359 339 335 353 303" fill="none" stroke="#cb5d5d" stroke-width="5" stroke-linecap="round" />
+                  <path d="M307 419 C303 377 297 348 284 318" fill="none" stroke="#3e82b5" stroke-width="5" stroke-linecap="round" />
+                </g>
+
+                <g class="model-part" data-part="nerve">
+                  <path d="M590 435 C568 393 569 356 582 329 C596 300 588 269 575 249" fill="none" stroke="#d8a323" stroke-width="5" stroke-linecap="round" />
+                  <path d="M576 250 L559 227 M576 250 L590 225 M576 250 L577 220" fill="none" stroke="#d8a323" stroke-width="4" stroke-linecap="round" />
+                  <g transform="translate(592 407)" fill="none" stroke="#b78a1b" stroke-width="3">
+                    <ellipse rx="20" ry="31"/><ellipse rx="13" ry="23"/><ellipse rx="7" ry="14"/>
+                  </g>
+                </g>
+
+                <g class="micro-layer" clip-path="url(#lensClip)" pointer-events="none">
+                  <rect x="92" y="90" width="570" height="390" fill="rgba(255,255,255,.10)" />
+                  <g fill="#f9ded1" stroke="#ab6958" stroke-width="1.2">
+                    <ellipse cx="125" cy="122" rx="20" ry="12"/><ellipse cx="167" cy="112" rx="21" ry="13"/>
+                    <ellipse cx="211" cy="124" rx="20" ry="12"/><ellipse cx="255" cy="112" rx="22" ry="13"/>
+                    <ellipse cx="300" cy="124" rx="20" ry="12"/><ellipse cx="345" cy="111" rx="22" ry="13"/>
+                    <ellipse cx="390" cy="123" rx="21" ry="13"/><ellipse cx="437" cy="111" rx="21" ry="13"/>
+                    <ellipse cx="483" cy="123" rx="22" ry="13"/><ellipse cx="531" cy="110" rx="21" ry="13"/>
+                    <ellipse cx="578" cy="121" rx="21" ry="13"/><ellipse cx="621" cy="112" rx="19" ry="12"/>
+                    <ellipse cx="143" cy="154" rx="20" ry="12"/><ellipse cx="188" cy="149" rx="22" ry="13"/>
+                    <ellipse cx="232" cy="158" rx="21" ry="12"/><ellipse cx="279" cy="148" rx="22" ry="13"/>
+                    <ellipse cx="326" cy="157" rx="20" ry="12"/><ellipse cx="374" cy="149" rx="22" ry="13"/>
+                    <ellipse cx="422" cy="157" rx="20" ry="12"/><ellipse cx="470" cy="148" rx="22" ry="13"/>
+                    <ellipse cx="518" cy="157" rx="20" ry="12"/><ellipse cx="564" cy="149" rx="22" ry="13"/>
+                    <ellipse cx="611" cy="156" rx="20" ry="12"/>
+                  </g>
+                  <g stroke="#775249" opacity=".56" stroke-width="1.2">
+                    <path d="M111 214 C176 191 231 240 300 216 S435 243 506 216 S605 230 646 216" fill="none"/>
+                    <path d="M111 245 C174 220 236 264 306 240 S447 268 523 240 S605 254 648 241" fill="none"/>
+                    <path d="M110 294 C178 267 233 310 310 284 S449 316 527 286 S610 304 649 288" fill="none"/>
+                    <path d="M111 343 C180 316 240 357 318 331 S457 362 533 334 S611 346 648 337" fill="none"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+
+            <circle id="lensRing" cx="-200" cy="-200" r="84" fill="none" stroke="#ffffff" stroke-width="3" opacity="0" pointer-events="none" />
+            <circle id="lensCenter" cx="-200" cy="-200" r="4" fill="#002d72" opacity="0" pointer-events="none" />
+          </svg>
+
+          <div class="model-caption" id="modelCaption">
+            <span class="caption-index">01</span>
+            <div>
+              <strong>Explore the skin</strong>
+              <p>Move your cursor across the model. Structures react as you get closer.</p>
+            </div>
+          </div>
+
+          <div class="model-credit">Model structure informed by OpenStax Anatomy &amp; Physiology 2e</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="platform" id="platform" aria-labelledby="platform-heading">
+      <div class="section-label">
+        <span>01</span>
+        <h2 id="platform-heading">The platform</h2>
+      </div>
+      <div class="platform-copy">
+        <p>
+          Dermatology information is often split between condition pages, anatomy diagrams,
+          product labels, and ingredient databases. This project is designed to connect those
+          pieces in one clear, interactive learning experience.
+        </p>
+        <div class="platform-principles" aria-label="Platform principles">
+          <div><span>Explore</span><strong>See the biology, not just the definition.</strong></div>
+          <div><span>Connect</span><strong>Move from anatomy to conditions to real-world labels.</strong></div>
+          <div><span>Verify</span><strong>See where information came from and when it was reviewed.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" aria-labelledby="experience-heading">
+      <div class="section-label section-label-white">
+        <span>02</span>
+        <h2 id="experience-heading">Designed to teach</h2>
+      </div>
+
+      <div class="experience-list">
+        <article class="experience-row">
+          <div class="experience-number">A</div>
+          <div>
+            <h3>Start with a question.</h3>
+            <p>Instead of long textbook pages, concepts begin with a question that gives the science a reason to matter.</p>
+          </div>
+          <div class="experience-visual question-visual" aria-hidden="true">?</div>
+        </article>
+
+        <article class="experience-row">
+          <div class="experience-number">B</div>
+          <div>
+            <h3>Interact with the explanation.</h3>
+            <p>Clickable anatomy, responsive diagrams, and short knowledge checks make the learner do more than scroll.</p>
+          </div>
+          <div class="experience-visual layers-visual" aria-hidden="true"><i></i><i></i><i></i></div>
+        </article>
+
+        <article class="experience-row">
+          <div class="experience-number">C</div>
+          <div>
+            <h3>Follow the evidence.</h3>
+            <p>Educational content is built to show its sources, review date, and update history instead of hiding them in the footer.</p>
+          </div>
+          <div class="experience-visual evidence-visual" aria-hidden="true"><i></i><i></i><i></i></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="connection" aria-labelledby="connection-heading">
+      <div class="section-label section-label-white">
+        <span>03</span>
+        <h2 id="connection-heading">One connected system</h2>
+      </div>
+      <div class="connection-content">
+        <div class="connection-copy">
+          <p class="overline">FROM CONCEPT TO CONTEXT</p>
+          <h3>Learn the science, then see where it shows up.</h3>
+          <p>
+            The long-term platform will connect foundational dermatology education with the
+            ingredient and formulation information people encounter in everyday products.
+          </p>
+        </div>
+
+        <div class="connection-map" aria-label="Concept map">
+          <div class="node n1"><span>Skin biology</span></div>
+          <div class="node n2"><span>Conditions</span></div>
+          <div class="node n3"><span>Labels</span></div>
+          <div class="node n4"><span>Evidence</span></div>
+          <svg viewBox="0 0 600 350" aria-hidden="true">
+            <path d="M180 91 C266 88 285 90 365 100" />
+            <path d="M399 125 C430 168 427 188 390 226" />
+            <path d="M357 250 C278 266 251 263 190 244" />
+            <path d="M150 216 C118 173 121 148 154 111" />
+            <path d="M190 113 C249 162 286 184 358 225" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="collective" id="collective" aria-labelledby="collective-heading">
+      <div class="section-label section-label-white">
+        <span>04</span>
+        <h2 id="collective-heading">The Collective</h2>
+      </div>
+
+      <div class="collective-grid">
+        <div class="collective-title">
+          <p class="overline blue">BUILT AT JOHNS HOPKINS</p>
+          <h3>Student-led.<br>Public-facing.<br>Evidence-minded.</h3>
+        </div>
+        <div class="collective-copy">
+          <p>
+            The Johns Hopkins Dermatology Collective is a student organization focused on
+            dermatology education, research, outreach, and making high-quality skin-health
+            information easier to understand.
+          </p>
+          <div class="pillar-list">
+            <div><span>Education</span><p>Build clear, interactive dermatology learning resources.</p></div>
+            <div><span>Research</span><p>Engage students with questions across dermatology and public health.</p></div>
+            <div><span>Outreach</span><p>Bring accessible skin-health education beyond the classroom.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust" aria-labelledby="trust-heading">
+      <div class="section-label section-label-white">
+        <span>05</span>
+        <h2 id="trust-heading">Built to show its work</h2>
+      </div>
+      <div class="trust-grid">
+        <div>
+          <p class="overline coral">EVIDENCE YOU CAN SEE</p>
+          <h3>Health education should make its sources visible.</h3>
+          <p class="trust-copy">
+            The finished platform is designed so visitors can see where a claim came from,
+            when a page was reviewed, and when a product record was last verified.
+          </p>
+        </div>
+        <div class="evidence-card" aria-label="Example evidence record">
+          <div class="evidence-head"><span>Example record</span><span class="status"><i></i>Current</span></div>
+          <strong>Skin anatomy</strong>
+          <dl>
+            <div><dt>Reference</dt><dd>OpenStax Anatomy &amp; Physiology 2e</dd></div>
+            <div><dt>Review status</dt><dd>Source visible on page</dd></div>
+            <div><dt>Update history</dt><dd>Dated revisions</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="contact-orbit orbit-one"></div>
+      <div class="contact-orbit orbit-two"></div>
+      <p class="contact-kicker">Johns Hopkins Dermatology Collective</p>
+      <h2 id="contact-heading">Questions, ideas, or corrections?</h2>
+      <p>
+        This platform is being built as a public educational project. Contact the Collective
+        about educational content, outreach, or the website itself.
+      </p>
+      <button class="contact-button" id="contactButton">Contact the Collective <span>↗</span></button>
+      <p class="contact-placeholder" id="contactPlaceholder">Add the club's official email or contact form before launch.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div>
+        <strong>Dermatology Collective</strong>
+        <span>Johns Hopkins University</span>
+      </div>
+      <div class="footer-note">
+        Student-run educational project. Not a substitute for individualized medical care.
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Dermatology Collective</span>
+      <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin" target="_blank" rel="noreferrer">OpenStax anatomy reference ↗</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
