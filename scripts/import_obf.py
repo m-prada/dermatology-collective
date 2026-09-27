@@ -104,6 +104,9 @@ def main():
         raw = clean(p.get("ingredients_text_en") or p.get("ingredients_text"))
         terms = tokenize(raw)
         if not re.fullmatch(r"\d{8,14}", code) or len(name) < 4 or len(brand) < 2 or len(terms) < 4 or len(raw) < 35 or len(raw) > 9000: continue
+        # Reject plainly mislabeled community records where the brand field is a placeholder
+        # or a product descriptor, or the product name is only a brand.
+        if brand.casefold() in {"test", "sensitive skin"} or name.casefold() in {"cerave", "aveeno"}: continue
         if len(set(map(key, terms))) < 4 or any(len(t) > 180 for t in terms): continue
         countries = p.get("countries_tags") or []
         score = 100 if any(b in brand.casefold() for b in BRANDS) else 0
