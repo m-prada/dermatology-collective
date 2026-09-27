@@ -1,40 +1,101 @@
-# Dermatology Collective website
+# Dermatology Collective
 
-This folder is ready to upload to a GitHub repository for GitHub Pages.
+An interactive dermatology education platform created by the **Dermatology Collective at Johns Hopkins University**.
 
-## Included pages
+The project is designed to make dermatology easier to explore by connecting skin biology, common conditions, product ingredients, formulation changes, and evidence in one cohesive learning experience.
 
-- `index.html` — homepage
-- `learn.html` — Learn
-- `ingredient-lab.html` — Ingredient Lab
-- `formulation-watcher.html` — Formulation Watcher
+## About the Project
 
-The homepage navigation now links to all three platform pages plus Contact.
+Dermatology information is often spread across anatomy diagrams, condition pages, product labels, and ingredient databases. This platform brings those pieces together into a more visual and interactive format.
 
-## GitHub Pages
+The website currently includes four main areas:
 
-Upload all four HTML files to the root of the same repository.
+- **Home**  
+  Introduces the platform, its educational philosophy, and the Dermatology Collective.
 
-Then open:
+- **Learn**  
+  Interactive dermatology education covering skin anatomy, skin function, common conditions, prevention, and skin health.
 
-Settings → Pages
+- **Ingredient Lab**  
+  A searchable interface for exploring ingredients, product records, ingredient roles, watchlists, and label information.
 
-Under **Build and deployment** choose:
+- **Formulation Watcher**  
+  A tool for comparing documented product formulations over time and identifying ingredients that were added, removed, or remained unchanged.
 
-- Source: **Deploy from a branch**
-- Branch: `main`
-- Folder: `/ (root)`
+## Project Goals
 
-Save.
+The platform is built around several principles:
 
-Your homepage will be `index.html`, and the other pages will resolve automatically because they are in the same folder.
+- make dermatology education visual and interactive
+- connect anatomy and physiology to real-world skin health
+- make sources and review information visible
+- explain product ingredients without assigning misleading safety scores
+- show formulation changes transparently
+- create educational tools that are approachable for patients, students, and the broader community
 
-## Important note about Learn lesson embeds
+## Current Features
 
-`learn.html` still references the AAD lesson PDFs and handouts by filename. Those files are not redistributed in this package.
+### Interactive Learning
 
-If you have permission to host those materials, place the referenced lesson PDFs/handouts in the same repository folder as `learn.html`. Otherwise, replace the embedded PDFs with links to authorized source pages or with original Dermatology Collective lesson content.
+The Learn section combines educational lessons with:
 
-## Current database status
+- interactive anatomy
+- mechanism-based visual explanations
+- knowledge checks
+- condition-focused modules
+- supporting educational resources
 
-Ingredient Lab and Formulation Watcher use clearly labeled demonstration records. Replace those demo records with verified product/formulation data before presenting them as a real public product database.
+### Ingredient Lab
+
+The Ingredient Lab prototype currently supports:
+
+- ingredient and product search
+- ingredient detail pages
+- product ingredient records
+- ingredient watchlists
+- pasted ingredient-list parsing
+- product comparison
+- source and verification information
+
+### Formulation Watcher
+
+The Formulation Watcher currently supports:
+
+- product search
+- formulation version timelines
+- side-by-side version comparison
+- added ingredient detection
+- removed ingredient detection
+- unchanged ingredient tracking
+- product watchlists
+- formulation source information
+
+## Evidence and Transparency
+
+Educational and product information is intended to display its source and review context whenever possible.
+
+Product formulations can change over time. Ingredient records should therefore be interpreted in the context of their listed source, market, and verification date. Users should also verify the ingredient list on the physical product they are currently using.
+
+This website is intended for **education only** and is not a substitute for individualized medical advice, diagnosis, or treatment.
+
+## Technology
+
+The website is currently built with:
+
+- HTML
+- CSS
+- JavaScript
+- SVG-based scientific illustrations
+- browser `localStorage` for selected interactive features
+- GitHub Pages for hosting
+
+The current architecture is intentionally lightweight and does not require a backend for the initial version.
+
+## Repository Structure
+
+```text
+index.html
+learn.html
+ingredient-lab.html
+formulation-watcher.html
+README.md
