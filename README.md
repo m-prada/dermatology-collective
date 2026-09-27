@@ -14,7 +14,7 @@ The visual system was rebuilt after reviewing the supplied JHU SGA repository, e
 - `app/(components)/Header.module.css`
 - `app/(components)/BlueJayAsciiVideo.tsx`
 
-The homepage borrows the SGA site's high-level design language:
+Fonts and formatting:
 
 - Source Serif 4 + Work Sans
 - Hopkins blue
