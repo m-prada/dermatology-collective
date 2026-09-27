@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive dermatology education and ingredient literacy from the Johns Hopkins Dermatology Collective." />
+  <title>Dermatology Collective | Johns Hopkins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="#" class="brand" aria-label="Dermatology Collective home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-dot"></span>
+        <span class="brand-ring"></span>
+      </span>
+      <span class="brand-text">
+        <strong>Dermatology</strong>
+        <span>Collective</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#learn">Learn</a>
+      <a href="#ingredients">Ingredient Lab</a>
+      <a href="#challenge">Derm Challenge</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="search-button" id="openSearch" aria-label="Open search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+      </button>
+      <a class="header-cta" href="#learn">Start learning</a>
+      <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#learn">Learn</a>
+    <a href="#ingredients">Ingredient Lab</a>
+    <a href="#challenge">Derm Challenge</a>
+    <a href="#tools">Tools</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg-shape hero-shape-one"></div>
+      <div class="hero-bg-shape hero-shape-two"></div>
+
+      <div class="hero-copy">
+        <div class="eyebrow">Johns Hopkins Dermatology Collective</div>
+        <h1>Understand your skin.</h1>
+        <p class="hero-subhead">
+          Evidence-based dermatology education, made interactive.
+          Learn the science, explore ingredients, and test what you know.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#learn">Start learning</a>
+          <a class="button button-secondary" href="#ingredients">Explore ingredients</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="skin-card floating-card">
+          <div class="skin-card-top">
+            <span class="micro-label">Interactive lesson</span>
+            <span class="time-pill">5 min</span>
+          </div>
+          <h3>Meet your skin</h3>
+          <div class="skin-diagram">
+            <div class="skin-layer epidermis"><span>Epidermis</span></div>
+            <div class="skin-layer dermis">
+              <span>Dermis</span>
+              <i class="follicle"></i>
+              <i class="gland"></i>
+            </div>
+            <div class="skin-layer subcut"><span>Subcutaneous</span></div>
+          </div>
+          <div class="lesson-progress">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="ingredient-mini floating-card">
+          <span class="micro-label">Ingredient Lab</span>
+          <div class="ingredient-row">
+            <span class="ingredient-icon">G</span>
+            <div>
+              <strong>Glycerin</strong>
+              <small>Humectant</small>
+            </div>
+          </div>
+          <div class="ingredient-row">
+            <span class="ingredient-icon">N</span>
+            <div>
+              <strong>Niacinamide</strong>
+              <small>Skin-conditioning</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="universal-search" aria-label="Search dermatology topics">
+      <div class="search-shell">
+        <span class="search-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+        </span>
+        <input id="globalSearch" type="search" placeholder="Search acne, eczema, niacinamide, sunscreen..." aria-label="Search" />
+        <span class="search-hint">⌘ K</span>
+      </div>
+      <div class="quick-links">
+        <span>Try:</span>
+        <button data-search="eczema">eczema</button>
+        <button data-search="fragrance">fragrance</button>
+        <button data-search="sunscreen">sunscreen</button>
+        <button data-search="acne">acne</button>
+      </div>
+      <div class="search-results" id="searchResults" aria-live="polite"></div>
+    </section>
+
+    <section class="feature-grid-section">
+      <div class="section-intro">
+        <p class="section-kicker">One platform, four ways to explore</p>
+        <h2>Dermatology that invites you in.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <a class="feature-card feature-learn" href="#learn">
+          <div class="feature-number">01</div>
+          <div class="feature-icon icon-layers" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div>
+            <h3>Learn</h3>
+            <p>Short, interactive lessons on skin, hair, nails, sun safety, and common conditions.</p>
+            <span class="text-link">Explore lessons <b>↗</b></span>
+          </div>
+        </a>
+
+        <a class="feature-card feature-ingredient" href="#ingredients">
+          <div class="feature-number">02</div>
+          <div class="feature-icon molecule" aria-hidden="true">
+            <span></span><span></span><span></span><i></i><i></i>
+          </div>
+          <div>
+            <h3>Ingredient Lab</h3>
+            <p>Search products and ingredients in either direction, compare formulas, and build a watchlist.</p>
+            <span class="text-link">Open Ingredient Lab <b>↗</b></span>
+          </div>
+        </a>
+
+        <a class="feature-card feature-challenge" href="#challenge">
+          <div class="feature-number">03</div>
+          <div class="feature-icon quiz-icon" aria-hidden="true">?</div>
+          <div>
+            <h3>Derm Challenge</h3>
+            <p>Turn evidence into memory with fast myth-or-fact questions and topic challenges.</p>
+            <span class="text-link">Take today's challenge <b>↗</b></span>
+          </div>
+        </a>
+
+        <a class="feature-card feature-tools" href="#tools">
+          <div class="feature-number">04</div>
+          <div class="feature-icon tool-icon" aria-hidden="true">
+            <span class="tool-bottle"></span>
+            <span class="tool-tag">SPF</span>
+          </div>
+          <div>
+            <h3>Skin Tools</h3>
+            <p>Decode sunscreen labels, compare products, and explore anatomy through visual tools.</p>
+            <span class="text-link">See tools <b>↗</b></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="learn-section" id="learn">
+      <div class="section-heading-row">
+        <div>
+          <p class="section-kicker">Learn</p>
+          <h2>Start with what matters to you.</h2>
+        </div>
+        <a href="#" class="underlined-link">View all lessons</a>
+      </div>
+
+      <div class="lesson-grid">
+        <article class="lesson-card lesson-featured">
+          <div class="lesson-art acne-art">
+            <span class="cell cell-1"></span>
+            <span class="cell cell-2"></span>
+            <span class="cell cell-3"></span>
+            <div class="follicle-illustration"></div>
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-meta"><span>Common conditions</span><span>6 min</span></div>
+            <h3>Acne: what is actually happening?</h3>
+            <p>Explore how follicles, oil, dead skin cells, and inflammation interact, then test your understanding.</p>
+            <a class="lesson-link" href="#">Start lesson <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="lesson-card compact">
+          <div class="compact-art barrier-art">
+            <div class="brick-row"></div><div class="brick-row"></div><div class="brick-row broken"></div>
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-meta"><span>Common conditions</span><span>5 min</span></div>
+            <h3>Eczema & the skin barrier</h3>
+            <a class="lesson-link" href="#">Explore <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="lesson-card compact">
+          <div class="compact-art sun-art">
+            <div class="sun-core"></div>
+            <span class="ray r1"></span><span class="ray r2"></span><span class="ray r3"></span><span class="ray r4"></span>
+            <span class="spf-badge">SPF 30+</span>
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-meta"><span>Protect your skin</span><span>5 min</span></div>
+            <h3>Sun safety, decoded</h3>
+            <a class="lesson-link" href="#">Explore <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="lesson-card compact">
+          <div class="compact-art pigment-art">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="lesson-content">
+            <div class="lesson-meta"><span>Common conditions</span><span>5 min</span></div>
+            <h3>Vitiligo & pigmentation</h3>
+            <a class="lesson-link" href="#">Explore <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ingredient-section" id="ingredients">
+      <div class="ingredient-copy">
+        <p class="section-kicker light">Ingredient Lab</p>
+        <h2>Know what the label can tell you.</h2>
+        <p>
+          Search a product. Reverse-search an ingredient. Compare formulas.
+          Keep a personal ingredient watchlist without needing an account.
+        </p>
+        <div class="ingredient-actions">
+          <a class="button button-light" href="#">Search products</a>
+          <a class="button button-outline-light" href="#">Search ingredients</a>
+        </div>
+        <p class="tiny-note">Educational use only. Formulations can change; always verify the physical label.</p>
+      </div>
+
+      <div class="ingredient-demo">
+        <div class="demo-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+          <span>fragrance</span>
+        </div>
+
+        <div class="demo-panel">
+          <div class="demo-header">
+            <div>
+              <span class="micro-label">Ingredient</span>
+              <h3>Fragrance</h3>
+            </div>
+            <span class="watch-pill">+ Watchlist</span>
+          </div>
+
+          <p class="demo-copy">A labeling term that can represent a mixture of fragrance ingredients.</p>
+
+          <div class="data-row">
+            <span>Products with a matching label term</span>
+            <strong>24</strong>
+          </div>
+          <div class="data-row">
+            <span>No matching term in current record</span>
+            <strong>61</strong>
+          </div>
+
+          <div class="bridge-card">
+            <span class="bridge-label">Connect the science</span>
+            <strong>Why can ingredient labels matter in contact dermatitis?</strong>
+            <span class="bridge-link">3-minute lesson →</span>
+          </div>
+
+          <div class="source-line">
+            <span class="source-dot"></span>
+            Evidence and record sources shown on every page
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="challenge-section" id="challenge">
+      <div class="challenge-copy">
+        <p class="section-kicker">Derm Challenge</p>
+        <h2>One minute. One misconception.</h2>
+        <p>Quick questions are designed to teach, not just score.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-top">
+          <span>MYTH OR FACT?</span>
+          <span>01 / 05</span>
+        </div>
+        <h3>Eczema is contagious.</h3>
+        <div class="answer-grid">
+          <button class="answer-button" data-answer="myth">Myth</button>
+          <button class="answer-button" data-answer="fact">Fact</button>
+        </div>
+        <div class="answer-explanation" id="answerExplanation">
+          Choose an answer to reveal the explanation.
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section" id="tools">
+      <div class="section-heading-row">
+        <div>
+          <p class="section-kicker">Tools</p>
+          <h2>Turn labels and diagrams into something understandable.</h2>
+        </div>
+      </div>
+
+      <div class="tools-grid">
+        <a href="#" class="tool-card">
+          <div class="tool-visual bottle-visual">
+            <div class="bottle-cap"></div>
+            <div class="bottle-body">
+              <small>BROAD SPECTRUM</small>
+              <strong>SPF 50</strong>
+              <span>water resistant</span>
+            </div>
+          </div>
+          <div>
+            <span class="micro-label">Interactive</span>
+            <h3>Sunscreen Label Decoder</h3>
+            <p>Click through SPF, broad-spectrum labeling, and water resistance.</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool-card">
+          <div class="tool-visual compare-visual">
+            <div class="compare-box">
+              <small>Product A</small>
+              <span class="ingredient-lines"></span>
+              <span class="ingredient-lines short"></span>
+            </div>
+            <div class="versus">VS</div>
+            <div class="compare-box">
+              <small>Product B</small>
+              <span class="ingredient-lines"></span>
+              <span class="ingredient-lines short"></span>
+            </div>
+          </div>
+          <div>
+            <span class="micro-label">Data tool</span>
+            <h3>Product Compare</h3>
+            <p>See shared ingredients, differences, watchlist matches, and verification dates.</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool-card">
+          <div class="tool-visual anatomy-visual">
+            <div class="anatomy-slice">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="anatomy-pointer p1"></div>
+            <div class="anatomy-pointer p2"></div>
+          </div>
+          <div>
+            <span class="micro-label">Interactive</span>
+            <h3>Skin Explorer</h3>
+            <p>Explore the epidermis, dermis, follicles, glands, nerves, and underlying tissue.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="evidence-section">
+      <div class="evidence-label">Evidence you can see.</div>
+      <div class="evidence-body">
+        <h2>Health information should show its work.</h2>
+        <p>
+          Every lesson and product record is designed to display its source,
+          review date, and evidence trail so you can see where the information came from.
+        </p>
+        <a href="#" class="button button-dark-outline">Read our methodology</a>
+      </div>
+      <div class="evidence-card">
+        <div class="evidence-card-row">
+          <span>Source</span>
+          <strong>Authoritative medical source</strong>
+        </div>
+        <div class="evidence-card-row">
+          <span>Reviewed</span>
+          <strong>September 2026</strong>
+        </div>
+        <div class="evidence-card-row">
+          <span>Record status</span>
+          <strong class="status"><i></i> Current</strong>
+        </div>
+        <div class="evidence-card-row">
+          <span>Methodology</span>
+          <strong>View →</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-big">
+        <p class="section-kicker">About us</p>
+        <h2>Built by students.<br/>Designed for the public.</h2>
+      </div>
+
+      <div class="about-copy">
+        <p>
+          Dermatology Collective is a Johns Hopkins student organization exploring dermatology through education,
+          research, outreach, and accessible public-facing resources.
+        </p>
+        <div class="about-links">
+          <a href="#">Meet the team <span>→</span></a>
+          <a href="#">Our outreach <span>→</span></a>
+          <a href="#">Get involved <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <span class="cta-orbit o1"></span>
+      <span class="cta-orbit o2"></span>
+      <p class="section-kicker light">Keep exploring</p>
+      <h2>Start with one question.</h2>
+      <div class="footer-cta-actions">
+        <a class="button button-light" href="#learn">Choose a lesson</a>
+        <a class="button button-outline-light" href="#ingredients">Explore Ingredient Lab</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-dot"></span>
+          <span class="brand-ring"></span>
+        </span>
+        <span class="brand-text">
+          <strong>Dermatology</strong>
+          <span>Collective</span>
+        </span>
+      </div>
+      <p>Johns Hopkins University</p>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <strong>Explore</strong>
+        <a href="#learn">Learn</a>
+        <a href="#ingredients">Ingredient Lab</a>
+        <a href="#challenge">Derm Challenge</a>
+        <a href="#tools">Tools</a>
+      </div>
+      <div>
+        <strong>Project</strong>
+        <a href="#about">About</a>
+        <a href="#">Methodology</a>
+        <a href="#">Sources</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div>
+        <strong>Connect</strong>
+        <a href="#">Instagram</a>
+        <a href="#">Email</a>
+        <a href="#">Get involved</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Dermatology Collective</span>
+      <span>Educational information only. This website does not provide medical diagnosis or treatment.</span>
+    </div>
+  </footer>
+
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-modal-inner">
+      <button class="close-search" id="closeSearch" aria-label="Close search">×</button>
+      <p class="section-kicker">Search</p>
+      <h2>What do you want to understand?</h2>
+      <input id="modalSearchInput" type="search" placeholder="Try eczema, sunscreen, fragrance..." />
+      <div class="modal-suggestions">
+        <span>Popular</span>
+        <button data-modal-search="eczema">Eczema</button>
+        <button data-modal-search="acne">Acne</button>
+        <button data-modal-search="sunscreen">Sunscreen</button>
+        <button data-modal-search="fragrance">Fragrance</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
