@@ -211,7 +211,7 @@ button{cursor:pointer}
   .card-grid{grid-template-columns:1fr}
 }
 @media(max-width:760px){
-  .nav{display:none}
+  .site-header{height:auto}.header-inner{min-height:var(--header);height:auto;flex-wrap:wrap;padding:.7rem 0}.nav{display:flex;width:100%;gap:.75rem 1rem}.nav a{font-size:.59rem}
   .workspace-grid{grid-template-columns:1fr}
   .sidebar{border-right:0;border-bottom:1px solid var(--line2)}
   .drawer-grid{grid-template-columns:1fr}
@@ -281,6 +281,10 @@ button{cursor:pointer}
     font-size:clamp(2.75rem,12vw,4.3rem) !important;
   }
 }
+
+.toolbar-actions{flex-wrap:wrap}
+.toolbar-actions select{max-width:11rem;min-height:2.3rem;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.3rem}
+@media(max-width:760px){.toolbar{flex-wrap:wrap}.toolbar-actions{width:100%}}
 </style>
 </head>
 <body>
@@ -288,10 +292,10 @@ button{cursor:pointer}
   <div class="header-inner">
     <a href="index.html"><span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span></a>
     <nav class="nav">
-      <a href="index.html">Home</a>
       <a href="learn.html">Learn</a>
       <a href="ingredient-lab.html">Ingredient Lab</a>
       <a class="active" href="formulation-watcher.html">Formulation Watcher</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -309,7 +313,7 @@ button{cursor:pointer}
     </div>
     <aside class="hero-side">
       <strong>Change tracking, not product ranking.</strong>
-      <p>This page shows documented formulation differences. It does not decide that one formula is safer, better, or worse than another.</p>
+      <p>This page shows documented formulation differences. It shows differences without ranking products.</p>
     </aside>
   </div>
 </section>
@@ -318,7 +322,7 @@ button{cursor:pointer}
   <div class="container workspace-shell">
     <div class="toolbar">
       <label class="search-shell">
-        <input id="watchSearch" type="search" placeholder="Search demo product records..." aria-label="Search formulation records">
+        <input id="watchSearch" type="search" placeholder="Search product records or barcodes..." aria-label="Search formulation records">
       </label>
       <div class="toolbar-actions">
         <button class="tool-btn" id="watchProductButton">Watch this product</button>
@@ -327,21 +331,23 @@ button{cursor:pointer}
 
     <div class="watch-shell">
       <aside class="product-rail">
-        <div class="panel-title">Products</div>
+        <div class="panel-title">Products</div><p id="productCount" aria-live="polite"></p>
         <div class="result-list" id="productList"></div>
         <div class="section-block">
           <div class="panel-title">Watching</div>
           <div class="watch-list" id="productWatchList"></div>
         </div>
-        <div class="notice">This prototype stores the watchlist only in your browser. It does not send automatic alerts.</div>
+        <div class="notice">The watchlist is stored only in this browser. It does not send alerts.</div>
       </aside>
 
       <section class="watcher-main">
         <div class="product-summary">
           <div><h2 id="productTitle"></h2><p id="productMeta"></p></div>
-          <span class="pill">Demo formulation history</span>
+          <span class="pill" id="productBadge">Community record</span>
         </div>
 
+        <div id="emptyHistory" class="section-block"><h3>No documented formulation history yet</h3><p>We need two distinct, dated ingredient records with clear sources before comparing versions. A community edit alone does not establish a reformulation.</p><div id="currentSource"></div></div>
+        <div id="documentedHistory" hidden>
         <div class="version-controls" style="margin-top:1rem">
           <div><span class="panel-title" style="display:block">Compare</span><select id="versionA"></select></div>
           <div><span class="panel-title" style="display:block">Against</span><select id="versionB"></select></div>
@@ -358,6 +364,8 @@ button{cursor:pointer}
           <div class="info-card"><span>Unchanged</span><strong id="sameCount">0</strong><p id="sameNames"></p></div>
         </div>
 
+        <div class="info-card"><span>Reordered</span><strong id="reorderedCount">0</strong><p id="reorderedNames"></p></div>
+        <p>Label order may indicate relative order, but does not disclose exact concentrations.</p>
         <div class="diff-layout">
           <article class="version-card">
             <header><div><h3 id="versionATitle"></h3><span id="versionADate"></span></div></header>
@@ -377,6 +385,7 @@ button{cursor:pointer}
           </div>
         </div>
 
+        </div>
         <div class="notice">
           Formulation records reflect the sources and dates shown here. Manufacturers may reformulate products, so the physical package remains the most immediate ingredient record for the product you have.
         </div>
@@ -389,120 +398,10 @@ button{cursor:pointer}
 <footer class="footer">
   <div class="footer-inner">
     <div><strong>Dermatology Collective</strong><span>Johns Hopkins University</span></div>
-    <span>Educational prototype. Formulation histories shown here are demo data.</span>
+    <span>Product data: <a href="https://world.openbeautyfacts.org/" target="_blank" rel="noopener noreferrer">Open Beauty Facts</a> (<a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>). <a href="README.md">Data sources and limitations</a>.</span>
   </div>
 </footer>
 
-<script>
-const DB = {"products": [{"id": "barrier-lotion", "name": "Barrier Daily Lotion", "brand": "Demo Record", "category": "Moisturizer", "versions": [{"id": "v1", "label": "Earlier formula", "date": "2025 demo", "ingredients": ["Water", "Glycerin", "Niacinamide", "Phenoxyethanol", "Fragrance"], "source": "Placeholder archived manufacturer record", "market": "United States \u00b7 demo"}, {"id": "v2", "label": "Current formula", "date": "2026 demo", "ingredients": ["Water", "Glycerin", "Niacinamide", "Ceramide NP", "Phenoxyethanol"], "source": "Placeholder current manufacturer record", "market": "United States \u00b7 demo"}]}, {"id": "gentle-cleanser", "name": "Gentle Gel Cleanser", "brand": "Demo Record", "category": "Cleanser", "versions": [{"id": "v1", "label": "Earlier formula", "date": "2025 demo", "ingredients": ["Water", "Glycerin", "Mild Surfactant A", "Phenoxyethanol"], "source": "Placeholder archived manufacturer record", "market": "United States \u00b7 demo"}, {"id": "v2", "label": "Current formula", "date": "2026 demo", "ingredients": ["Water", "Glycerin", "Mild Surfactant B", "Phenoxyethanol"], "source": "Placeholder current manufacturer record", "market": "United States \u00b7 demo"}]}]};
-const productMap = Object.fromEntries(DB.products.map(p => [p.id,p]));
-let currentProductId = DB.products[0].id;
-
-const productList = document.getElementById('productList');
-const search = document.getElementById('watchSearch');
-const versionA = document.getElementById('versionA');
-const versionB = document.getElementById('versionB');
-
-function getWatch() {
-  try { return JSON.parse(localStorage.getItem('dcProductWatch') || '[]'); }
-  catch { return []; }
-}
-function saveWatch(items) {
-  localStorage.setItem('dcProductWatch', JSON.stringify(items)); renderWatch();
-}
-function toggleProductWatch() {
-  const ids = getWatch();
-  const next = ids.includes(currentProductId) ? ids.filter(x=>x!==currentProductId) : [...ids,currentProductId];
-  saveWatch(next); updateWatchButton();
-}
-function updateWatchButton() {
-  document.getElementById('watchProductButton').textContent =
-    getWatch().includes(currentProductId) ? 'Remove from watchlist' : 'Watch this product';
-}
-function renderWatch() {
-  const ids = getWatch();
-  document.getElementById('productWatchList').innerHTML = ids.length
-    ? ids.map(id => `<div class="watch-item"><b>${productMap[id]?.name || id}</b><button onclick="openProduct('${id}')">Open</button></div>`).join('')
-    : '<div class="notice" style="margin-top:0">No products saved yet.</div>';
-}
-function renderProducts(query='') {
-  const q = query.trim().toLowerCase();
-  const rows = DB.products.filter(p => !q || [p.name,p.brand,p.category].join(' ').toLowerCase().includes(q));
-  productList.innerHTML = rows.map(p => `
-    <button class="result ${p.id===currentProductId?'active':''}" data-id="${p.id}">
-      <strong>${p.name}</strong><span>${p.brand} · ${p.category}</span>
-    </button>`).join('');
-  productList.querySelectorAll('.result').forEach(btn => btn.addEventListener('click',()=>openProduct(btn.dataset.id)));
-}
-function openProduct(id) {
-  currentProductId = id;
-  renderProducts(search.value);
-  setupVersions();
-  renderDiff();
-  updateWatchButton();
-}
-function setupVersions() {
-  const p = productMap[currentProductId];
-  const options = p.versions.map(v => `<option value="${v.id}">${v.label} · ${v.date}</option>`).join('');
-  versionA.innerHTML = options;
-  versionB.innerHTML = options;
-  versionA.selectedIndex = 0;
-  versionB.selectedIndex = Math.max(0,p.versions.length-1);
-}
-function diffVersions(a,b) {
-  const added = b.ingredients.filter(x => !a.ingredients.includes(x));
-  const removed = a.ingredients.filter(x => !b.ingredients.includes(x));
-  const same = a.ingredients.filter(x => b.ingredients.includes(x));
-  return {added,removed,same};
-}
-function stackHTML(version, diff, side) {
-  return version.ingredients.map(name => {
-    let status = 'same', label = 'unchanged';
-    if (side==='A' && diff.removed.includes(name)) { status='removed'; label='removed'; }
-    if (side==='B' && diff.added.includes(name)) { status='added'; label='added'; }
-    return `<div class="ingredient-row"><b>${name}</b><span class="status ${status}">${label}</span></div>`;
-  }).join('');
-}
-function renderDiff() {
-  const p = productMap[currentProductId];
-  const a = p.versions.find(v=>v.id===versionA.value) || p.versions[0];
-  const b = p.versions.find(v=>v.id===versionB.value) || p.versions[p.versions.length-1];
-  const d = diffVersions(a,b);
-
-  document.getElementById('productTitle').textContent = p.name;
-  document.getElementById('productMeta').textContent = `${p.brand} · ${p.category}`;
-  document.getElementById('timelineA').textContent = a.date;
-  document.getElementById('timelineB').textContent = b.date;
-
-  document.getElementById('addedCount').textContent = d.added.length;
-  document.getElementById('removedCount').textContent = d.removed.length;
-  document.getElementById('sameCount').textContent = d.same.length;
-  document.getElementById('addedNames').textContent = d.added.join(', ') || 'None';
-  document.getElementById('removedNames').textContent = d.removed.join(', ') || 'None';
-  document.getElementById('sameNames').textContent = d.same.join(', ') || 'None';
-
-  document.getElementById('versionATitle').textContent = a.label;
-  document.getElementById('versionBTitle').textContent = b.label;
-  document.getElementById('versionADate').textContent = a.date;
-  document.getElementById('versionBDate').textContent = b.date;
-  document.getElementById('stackA').innerHTML = stackHTML(a,d,'A');
-  document.getElementById('stackB').innerHTML = stackHTML(b,d,'B');
-
-  document.getElementById('sourceA').textContent = a.source;
-  document.getElementById('sourceB').textContent = b.source;
-  document.getElementById('marketA').textContent = a.market;
-  document.getElementById('marketB').textContent = b.market;
-}
-search.addEventListener('input',()=>renderProducts(search.value));
-versionA.addEventListener('change',renderDiff);
-versionB.addEventListener('change',renderDiff);
-document.getElementById('watchProductButton').addEventListener('click',toggleProductWatch);
-
-renderWatch();
-renderProducts();
-setupVersions();
-renderDiff();
-updateWatchButton();
-</script>
+<script src="js/formulation-watcher.js" defer></script>
 </body>
 </html>
