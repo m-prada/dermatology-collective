@@ -211,11 +211,15 @@ button{cursor:pointer}
   .card-grid{grid-template-columns:1fr}
 }
 @media(max-width:760px){
-  .nav{display:none}
+  .site-header{height:auto}.header-inner{min-height:var(--header);height:auto;flex-wrap:wrap;padding:.7rem 0}.nav{display:flex;width:100%;gap:.75rem 1rem}.nav a{font-size:.59rem}
   .workspace-grid{grid-template-columns:1fr}
   .sidebar{border-right:0;border-bottom:1px solid var(--line2)}
   .drawer-grid{grid-template-columns:1fr}
 }
+
+.toolbar-actions{flex-wrap:wrap}
+.toolbar-actions select{max-width:11rem;min-height:2.3rem;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.3rem}
+@media(max-width:760px){.toolbar{flex-wrap:wrap}.toolbar-actions{width:100%}}
 </style>
 </head>
 <body>
@@ -223,10 +227,10 @@ button{cursor:pointer}
   <div class="header-inner">
     <a href="index.html"><span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span></a>
     <nav class="nav">
-      <a href="index.html">Home</a>
       <a href="learn.html">Learn</a>
       <a class="active" href="ingredient-lab.html">Ingredient Lab</a>
       <a href="formulation-watcher.html">Formulation Watcher</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -244,7 +248,7 @@ button{cursor:pointer}
     </div>
     <aside class="hero-side">
       <strong>Transparent by design.</strong>
-      <p>Every record is built to show its source, market, and verification status. This prototype uses clearly labeled demo product data until real verified records are added.</p>
+      <p>Every record is built to show its source, market, and verification status. Community records are attributed to Open Beauty Facts and have not been independently verified.</p>
     </aside>
   </div>
 </section>
@@ -256,6 +260,9 @@ button{cursor:pointer}
         <input id="universalSearch" type="search" placeholder="Search glycerin, moisturizer, cleanser..." aria-label="Search Ingredient Lab">
       </label>
       <div class="toolbar-actions">
+        <select id="categoryFilter" aria-label="Filter by category"><option value="">All categories</option></select>
+        <select id="brandFilter" aria-label="Filter by brand"><option value="">All brands</option></select>
+        <select id="statusFilter" aria-label="Filter by verification"><option value="">All verification statuses</option><option value="community">Community record</option><option value="verified">Verified record</option></select>
         <button class="tool-btn active" data-mode="search">Search</button>
         <button class="tool-btn" data-mode="paste">Paste a label</button>
         <button class="tool-btn" data-mode="compare">Compare products</button>
@@ -264,7 +271,7 @@ button{cursor:pointer}
 
     <div class="workspace-grid">
       <aside class="sidebar">
-        <div class="panel-title">Results</div>
+        <div class="panel-title">Results</div><p id="resultCount" aria-live="polite"></p>
         <div class="result-list" id="resultList"></div>
       </aside>
 
@@ -274,14 +281,14 @@ button{cursor:pointer}
         <div class="panel-title">Watchlist</div>
         <div class="watch-list" id="watchList"></div>
         <div class="notice">
-          Watchlist matches are informational only. They do not determine whether a product is safe or unsafe for a specific person.
+          Watchlist matches are informational only. They are not a personal medical assessment.
         </div>
 
         <div class="section-block">
           <h3>Evidence standard</h3>
           <div class="source-row"><span>Record source</span><strong>Visible</strong></div>
           <div class="source-row"><span>Market</span><strong>Visible</strong></div>
-          <div class="source-row"><span>Verified date</span><strong>Visible</strong></div>
+          <div class="source-row"><span>Accessed date</span><strong>Visible</strong></div>
         </div>
       </aside>
     </div>
@@ -322,164 +329,10 @@ button{cursor:pointer}
 <footer class="footer">
   <div class="footer-inner">
     <div><strong>Dermatology Collective</strong><span>Johns Hopkins University</span></div>
-    <span>Educational prototype. Product records shown here are demo data.</span>
+    <span>Product data: <a href="https://world.openbeautyfacts.org/" target="_blank" rel="noopener noreferrer">Open Beauty Facts</a> (<a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL</a>). <a href="README.md">Data sources and limitations</a>.</span>
   </div>
 </footer>
 
-<script>
-const DB = {"ingredients": [{"id": "glycerin", "name": "Glycerin", "type": "Ingredient", "role": "Humectant", "aliases": ["Glycerol"], "summary": "A common humectant used to help attract and retain water within a formulation.", "products": ["barrier-lotion", "gel-cleanser", "mineral-spf"], "notes": "Function depends on the overall formulation and concentration."}, {"id": "niacinamide", "name": "Niacinamide", "type": "Ingredient", "role": "Skin-conditioning", "aliases": ["Nicotinamide"], "summary": "A form of vitamin B3 used in many leave-on skin-care formulations.", "products": ["barrier-lotion"], "notes": "Ingredient role and performance depend on the full formula."}, {"id": "ceramide-np", "name": "Ceramide NP", "type": "Ingredient", "role": "Skin-identical lipid", "aliases": [], "summary": "A ceramide-type lipid used in some barrier-supporting formulations.", "products": ["barrier-lotion"], "notes": "The presence of an ingredient alone does not determine product performance."}, {"id": "phenoxyethanol", "name": "Phenoxyethanol", "type": "Ingredient", "role": "Preservative", "aliases": [], "summary": "A preservative used to help protect cosmetic formulations from microbial growth.", "products": ["barrier-lotion", "gel-cleanser"], "notes": "Preservative systems are evaluated as part of the complete product."}, {"id": "fragrance", "name": "Fragrance", "type": "Ingredient label", "role": "Fragrance mixture", "aliases": ["Parfum"], "summary": "A labeling term that can represent a fragrance mixture rather than one single compound.", "products": ["mineral-spf"], "notes": "A label may not disclose every individual fragrance component."}], "products": [{"id": "barrier-lotion", "name": "Barrier Daily Lotion", "brand": "Demo Record", "category": "Moisturizer", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "niacinamide", "ceramide-np", "phenoxyethanol"], "source": "Placeholder manufacturer record"}, {"id": "gel-cleanser", "name": "Gentle Gel Cleanser", "brand": "Demo Record", "category": "Cleanser", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "phenoxyethanol"], "source": "Placeholder manufacturer record"}, {"id": "mineral-spf", "name": "Daily Mineral SPF", "brand": "Demo Record", "category": "Sunscreen", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "fragrance"], "source": "Placeholder manufacturer record"}]};
-const ingredientMap = Object.fromEntries(DB.ingredients.map(x => [x.id,x]));
-const productMap = Object.fromEntries(DB.products.map(x => [x.id,x]));
-let current = {kind:'ingredient', id:'glycerin'};
-
-const resultList = document.getElementById('resultList');
-const detailPanel = document.getElementById('detailPanel');
-const watchList = document.getElementById('watchList');
-const search = document.getElementById('universalSearch');
-const pasteDrawer = document.getElementById('pasteDrawer');
-const compareDrawer = document.getElementById('compareDrawer');
-
-function getWatch() {
-  try { return JSON.parse(localStorage.getItem('dcIngredientWatch') || '[]'); }
-  catch { return []; }
-}
-function saveWatch(items) {
-  localStorage.setItem('dcIngredientWatch', JSON.stringify(items));
-  renderWatch();
-}
-function toggleWatch(id) {
-  const items = getWatch();
-  const next = items.includes(id) ? items.filter(x => x !== id) : [...items,id];
-  saveWatch(next);
-  renderDetail();
-}
-function renderWatch() {
-  const ids = getWatch();
-  watchList.innerHTML = ids.length ? ids.map(id => {
-    const ing = ingredientMap[id];
-    return `<div class="watch-item"><b>${ing?.name || id}</b><button onclick="toggleWatch('${id}')">Remove</button></div>`;
-  }).join('') : '<div class="notice" style="margin-top:0">No ingredients saved yet.</div>';
-}
-
-function allResults(query='') {
-  const q = query.trim().toLowerCase();
-  const ingredients = DB.ingredients.filter(x => !q || [x.name,x.role,...x.aliases].join(' ').toLowerCase().includes(q))
-    .map(x => ({kind:'ingredient',id:x.id,name:x.name,meta:`Ingredient · ${x.role}`}));
-  const products = DB.products.filter(x => !q || [x.name,x.brand,x.category].join(' ').toLowerCase().includes(q))
-    .map(x => ({kind:'product',id:x.id,name:x.name,meta:`${x.brand} · ${x.category}`}));
-  return [...ingredients,...products];
-}
-function renderResults(query='') {
-  const rows = allResults(query);
-  resultList.innerHTML = rows.length ? rows.map(r => `
-    <button class="result ${current.kind===r.kind && current.id===r.id ? 'active':''}" data-kind="${r.kind}" data-id="${r.id}">
-      <strong>${r.name}</strong><span>${r.meta}</span>
-    </button>`).join('') : '<div class="notice" style="margin-top:0">No matching record.</div>';
-  resultList.querySelectorAll('.result').forEach(btn => btn.addEventListener('click', () => {
-    current = {kind:btn.dataset.kind,id:btn.dataset.id};
-    renderResults(search.value); renderDetail();
-  }));
-}
-function ingredientProductNames(id) {
-  return DB.products.filter(p => p.ingredients.includes(id)).map(p => p.name);
-}
-function renderDetail() {
-  if (current.kind === 'ingredient') {
-    const x = ingredientMap[current.id];
-    const watched = getWatch().includes(x.id);
-    const names = ingredientProductNames(x.id);
-    detailPanel.innerHTML = `
-      <div class="detail-head">
-        <div><h2>${x.name}</h2><p>${x.aliases.length ? 'Also listed as ' + x.aliases.join(', ') : 'Standard ingredient record'}</p></div>
-        <span class="role-chip">${x.role}</span>
-      </div>
-      <div class="card-grid">
-        <div class="info-card"><span>Role</span><strong>${x.role}</strong><p>Role can vary with the complete formula.</p></div>
-        <div class="info-card"><span>Products in demo database</span><strong>${names.length}</strong><p>${names.join(' · ') || 'None'}</p></div>
-        <div class="info-card"><span>Watchlist</span><strong>${watched ? 'Watching' : 'Not watching'}</strong><p>Stored only in this browser.</p></div>
-      </div>
-      <div class="section-block"><h3>What it does</h3><p>${x.summary}</p><p>${x.notes}</p></div>
-      <div class="section-block"><h3>Where it appears</h3><div class="tag-list">${names.map(n => `<span class="tag">${n}</span>`).join('') || '<span class="tag">No demo products</span>'}</div></div>
-      <div class="section-block"><h3>Record provenance</h3>
-        <div class="source-row"><span>Source</span><strong>Ingredient reference record</strong></div>
-        <div class="source-row"><span>Status</span><strong>Demo educational record</strong></div>
-      </div>
-      <div class="action-row">
-        <button class="primary-btn" onclick="toggleWatch('${x.id}')">${watched ? 'Remove from watchlist' : 'Add to watchlist'}</button>
-      </div>`;
-  } else {
-    const p = productMap[current.id];
-    const watch = getWatch();
-    const matches = p.ingredients.filter(id => watch.includes(id));
-    detailPanel.innerHTML = `
-      <div class="detail-head">
-        <div><h2>${p.name}</h2><p>${p.brand} · ${p.category}</p></div>
-        <span class="pill">${p.market}</span>
-      </div>
-      <div class="card-grid">
-        <div class="info-card"><span>Ingredients in record</span><strong>${p.ingredients.length}</strong><p>Click any ingredient below.</p></div>
-        <div class="info-card"><span>Watchlist matches</span><strong>${matches.length}</strong><p>${matches.map(id => ingredientMap[id].name).join(', ') || 'No matches'}</p></div>
-        <div class="info-card"><span>Verification</span><strong>${p.verified}</strong><p>Demo data only.</p></div>
-      </div>
-      <div class="section-block"><h3>Ingredient list</h3><div class="tag-list">${p.ingredients.map(id => `<button class="tag" onclick="openIngredient('${id}')">${ingredientMap[id].name}</button>`).join('')}</div></div>
-      <div class="section-block"><h3>Record provenance</h3>
-        <div class="source-row"><span>Source</span><strong>${p.source}</strong></div>
-        <div class="source-row"><span>Market</span><strong>${p.market}</strong></div>
-        <div class="source-row"><span>Last verified</span><strong>${p.verified}</strong></div>
-      </div>
-      <div class="notice">Manufacturer formulas can change. Always verify the ingredient list on the physical package you are using.</div>`;
-  }
-}
-function openIngredient(id) {
-  current = {kind:'ingredient',id};
-  search.value = ingredientMap[id].name;
-  renderResults(search.value); renderDetail();
-}
-
-search.addEventListener('input', () => renderResults(search.value));
-
-document.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('[data-mode]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const mode = btn.dataset.mode;
-  pasteDrawer.classList.toggle('open', mode==='paste');
-  compareDrawer.classList.toggle('open', mode==='compare');
-}));
-
-document.getElementById('parseButton').addEventListener('click', () => {
-  const raw = document.getElementById('ingredientPaste').value;
-  const tokens = raw.split(/[,;\n]/).map(x => x.trim()).filter(Boolean);
-  const matched = tokens.map(name => {
-    const key = name.toLowerCase();
-    const ing = DB.ingredients.find(x => x.name.toLowerCase()===key || x.aliases.some(a => a.toLowerCase()===key));
-    return {name,ing};
-  });
-  document.getElementById('parseOutput').innerHTML = `<div class="parsed">${matched.map(x => `<span class="tag" style="${x.ing?'border-color:#8fbfae;background:#f4fbf8':''}">${x.ing ? x.ing.name : x.name + ' · no record'}</span>`).join('')}</div>`;
-});
-
-const compareA = document.getElementById('compareA');
-const compareB = document.getElementById('compareB');
-[compareA,compareB].forEach((sel,idx) => {
-  sel.innerHTML = DB.products.map((p,i) => `<option value="${p.id}" ${i===idx?'selected':''}>${p.name}</option>`).join('');
-  sel.addEventListener('change', renderCompare);
-});
-function renderCompare() {
-  const a = productMap[compareA.value], b = productMap[compareB.value];
-  const shared = a.ingredients.filter(x => b.ingredients.includes(x));
-  const onlyA = a.ingredients.filter(x => !b.ingredients.includes(x));
-  const onlyB = b.ingredients.filter(x => !a.ingredients.includes(x));
-  document.getElementById('compareOutput').innerHTML = `
-    <h3>${a.name} vs. ${b.name}</h3>
-    <div class="card-grid">
-      <div class="info-card"><span>Shared</span><strong>${shared.length}</strong><p>${shared.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
-      <div class="info-card"><span>Only in A</span><strong>${onlyA.length}</strong><p>${onlyA.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
-      <div class="info-card"><span>Only in B</span><strong>${onlyB.length}</strong><p>${onlyB.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
-    </div>`;
-}
-renderCompare();
-renderWatch();
-renderResults();
-renderDetail();
-</script>
+<script src="js/ingredient-lab.js" defer></script>
 </body>
 </html>
