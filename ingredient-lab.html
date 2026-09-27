@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ingredient Lab | Dermatology Collective</title>
+<style>
+:root{
+  --bg:#f4f6f8;
+  --paper:#fff;
+  --paper-soft:#f8fbfd;
+  --blue:#002d72;
+  --ink:#405870;
+  --muted:#6f859a;
+  --line:#bfd0e1;
+  --line2:#d9e3ec;
+  --sky:#79a9da;
+  --teal:#69afa6;
+  --salmon:#df8b73;
+  --gold:#d8b45f;
+  --green:#4f8d7f;
+  --red:#b86658;
+  --pad:clamp(1.2rem,3vw,2rem);
+  --header:72px;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;
+  --shadow:0 20px 50px rgba(0,45,114,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.container{width:min(1420px,calc(100% - 2 * var(--pad)));margin:0 auto}
+.site-header{
+  position:sticky;top:0;z-index:60;height:var(--header);
+  background:rgba(244,246,248,.94);border-bottom:1px solid rgba(0,45,114,.08);
+  backdrop-filter:blur(12px)
+}
+.header-inner{
+  height:100%;width:min(1480px,calc(100% - 2 * var(--pad)));margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem
+}
+.brand-copy strong{display:block;color:var(--blue);font-size:1.05rem;line-height:1;letter-spacing:-.02em}
+.brand-copy small{
+  display:block;margin-top:.34rem;color:var(--muted);font-family:var(--mono);
+  font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase
+}
+.nav{display:flex;gap:1.45rem;align-items:center;flex-wrap:wrap}
+.nav a{
+  color:#546b83;font-family:var(--mono);font-size:.66rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase
+}
+.nav a.active,.nav a:hover{color:var(--blue)}
+.hero{padding:clamp(3.5rem,6vw,5.5rem) 0 2.6rem}
+.hero-shell{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(24rem,.85fr);
+  gap:clamp(2rem,5vw,5rem);align-items:end
+}
+.kicker{
+  display:block;margin-bottom:.65rem;color:#6887a5;font-family:var(--mono);
+  font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase
+}
+.hero h1{
+  margin:0;color:var(--blue);font-family:var(--serif);
+  font-size:clamp(4rem,7vw,7rem);font-weight:520;line-height:.86;letter-spacing:-.07em
+}
+.hero-copy{
+  max-width:46rem;margin:1.2rem 0 0;color:#536b83;font-size:1.02rem;line-height:1.72
+}
+.hero-side{
+  border-left:3px solid #9dc6e8;padding:1rem 0 1rem 1.4rem;
+  background:linear-gradient(90deg,rgba(185,217,245,.18),transparent)
+}
+.hero-side strong{
+  display:block;color:var(--blue);font-family:var(--serif);font-size:1.55rem;
+  letter-spacing:-.03em
+}
+.hero-side p{margin:.45rem 0 0;color:#637991;font-size:.86rem;line-height:1.6}
+.workspace{padding:0 0 5rem}
+.workspace-shell{
+  border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)
+}
+.toolbar{
+  min-height:4.2rem;padding:.7rem .8rem;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line2);
+  background:#fbfdff;flex-wrap:wrap
+}
+.search-shell{
+  flex:1;min-width:18rem;display:flex;align-items:center;gap:.7rem;
+  height:2.8rem;border:1px solid #b8cde0;border-radius:99px;background:#fff;padding:0 1rem
+}
+.search-shell::before{
+  content:"";width:.78rem;height:.78rem;border:1.8px solid var(--blue);
+  border-radius:50%;box-shadow:7px 7px 0 -5.5px var(--blue);transform:rotate(-2deg)
+}
+.search-shell input{flex:1;border:0;outline:0;color:var(--blue);background:transparent}
+.toolbar-actions{display:flex;gap:.5rem;align-items:center}
+.tool-btn{
+  min-height:2.45rem;padding:0 .8rem;border:1px solid var(--line);
+  background:#fff;color:var(--blue);font-size:.7rem;font-weight:750
+}
+.tool-btn.active,.tool-btn:hover{border-color:#7ca9d0;background:#f4f9fd}
+.pill{
+  display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--line);
+  padding:.34rem .52rem;background:#fff;color:#5f7790;font-size:.56rem;font-weight:700
+}
+.workspace-grid{
+  display:grid;grid-template-columns:18rem minmax(0,1fr) 20rem;min-height:42rem
+}
+.sidebar{
+  border-right:1px solid var(--line2);background:#fbfdff;padding:.8rem
+}
+.sidebar.right{border-left:1px solid var(--line2);border-right:0}
+.panel-title{
+  color:#7691aa;font-family:var(--mono);font-size:.56rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:.2rem 0 .6rem
+}
+.result-list{display:grid;gap:.35rem}
+.result{
+  border:1px solid transparent;background:transparent;padding:.65rem;text-align:left;
+  width:100%
+}
+.result:hover,.result.active{border-color:#b8cee2;background:#fff}
+.result strong{display:block;color:var(--blue);font-size:.82rem}
+.result span{display:block;color:#8397aa;font-size:.58rem;margin-top:.18rem}
+.main-panel{padding:1rem 1.15rem}
+.detail-head{
+  display:flex;align-items:start;justify-content:space-between;gap:1rem;
+  padding-bottom:1rem;border-bottom:1px solid var(--line2)
+}
+.detail-head h2{
+  margin:0;color:var(--blue);font-family:var(--serif);font-size:2.6rem;
+  font-weight:580;letter-spacing:-.045em;line-height:1
+}
+.detail-head p{margin:.5rem 0 0;color:#647a90;font-size:.84rem}
+.role-chip{
+  display:inline-flex;border:1px solid #b6d6d0;background:#f1faf8;color:#3f7d76;
+  padding:.35rem .52rem;font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase
+}
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1rem}
+.info-card{border:1px solid var(--line2);background:#fbfdff;padding:.8rem;min-height:7rem}
+.info-card span{
+  display:block;color:#7990a6;font-family:var(--mono);font-size:.52rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em
+}
+.info-card strong{display:block;margin-top:.55rem;color:var(--blue);font-size:.92rem}
+.info-card p{margin:.35rem 0 0;color:#6c8195;font-size:.7rem;line-height:1.5}
+.section-block{margin-top:1rem;border-top:1px solid var(--line2);padding-top:1rem}
+.section-block h3{
+  margin:0;color:var(--blue);font-family:var(--serif);font-size:1.5rem;
+  font-weight:600;letter-spacing:-.035em
+}
+.section-block p{color:#647b91;font-size:.82rem;line-height:1.62}
+.tag-list{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.7rem}
+.tag{
+  border:1px solid var(--line);background:#fff;padding:.35rem .5rem;
+  color:#607991;font-size:.62rem
+}
+.action-row{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:.8rem}
+.primary-btn,.secondary-btn{
+  min-height:2.6rem;padding:0 .85rem;font-size:.72rem;font-weight:800;border:1px solid var(--blue)
+}
+.primary-btn{background:var(--blue);color:#fff}
+.secondary-btn{background:#fff;color:var(--blue)}
+.watch-list{display:grid;gap:.45rem}
+.watch-item{
+  border:1px solid var(--line2);background:#fff;padding:.6rem;display:flex;
+  align-items:center;justify-content:space-between;gap:.5rem
+}
+.watch-item b{color:var(--blue);font-size:.72rem}
+.watch-item button{border:0;background:transparent;color:#8a99a8;font-size:.68rem}
+.notice{
+  margin-top:.8rem;padding:.7rem;border:1px solid #d7e2ec;background:#f8fbfd;
+  color:#6c8195;font-size:.67rem;line-height:1.5
+}
+.drawer{
+  display:none;border-top:1px solid var(--line2);background:#fbfdff;padding:1rem
+}
+.drawer.open{display:block}
+.drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.drawer textarea{
+  width:100%;min-height:9rem;border:1px solid var(--line);background:#fff;
+  padding:.8rem;color:#466077;resize:vertical
+}
+.parse-output{border:1px solid var(--line);background:#fff;padding:.8rem;min-height:9rem}
+.parse-output .parsed{display:flex;flex-wrap:wrap;gap:.35rem}
+.source-row{
+  display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;
+  border-bottom:1px solid #edf1f5;color:#6d8194;font-size:.66rem
+}
+.source-row:last-child{border-bottom:0}
+.footer{
+  padding:2rem 0 2.5rem;border-top:1px solid rgba(0,45,114,.08);background:#eef4f8
+}
+.footer-inner{
+  width:min(1420px,calc(100% - 2 * var(--pad)));margin:0 auto;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap
+}
+.footer strong{display:block;color:var(--blue)}
+.footer span{color:#71879c;font-size:.8rem}
+@media(max-width:1120px){
+  .hero-shell{grid-template-columns:1fr}
+  .workspace-grid{grid-template-columns:16rem 1fr}
+  .sidebar.right{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line2)}
+  .card-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .nav{display:none}
+  .workspace-grid{grid-template-columns:1fr}
+  .sidebar{border-right:0;border-bottom:1px solid var(--line2)}
+  .drawer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html"><span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="learn.html">Learn</a>
+      <a class="active" href="ingredient-lab.html">Ingredient Lab</a>
+      <a href="formulation-watcher.html">Formulation Watcher</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-shell">
+    <div>
+      <span class="kicker">Ingredient Lab</span>
+      <h1>Read the label<br>with context.</h1>
+      <p class="hero-copy">
+        Search ingredients and product records, see what each ingredient is doing in the database,
+        build a personal watchlist, and parse a pasted ingredient list without turning the result into a safety score.
+      </p>
+    </div>
+    <aside class="hero-side">
+      <strong>Transparent by design.</strong>
+      <p>Every record is built to show its source, market, and verification status. This prototype uses clearly labeled demo product data until real verified records are added.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="workspace">
+  <div class="container workspace-shell">
+    <div class="toolbar">
+      <label class="search-shell">
+        <input id="universalSearch" type="search" placeholder="Search glycerin, moisturizer, cleanser..." aria-label="Search Ingredient Lab">
+      </label>
+      <div class="toolbar-actions">
+        <button class="tool-btn active" data-mode="search">Search</button>
+        <button class="tool-btn" data-mode="paste">Paste a label</button>
+        <button class="tool-btn" data-mode="compare">Compare products</button>
+      </div>
+    </div>
+
+    <div class="workspace-grid">
+      <aside class="sidebar">
+        <div class="panel-title">Results</div>
+        <div class="result-list" id="resultList"></div>
+      </aside>
+
+      <section class="main-panel" id="detailPanel"></section>
+
+      <aside class="sidebar right">
+        <div class="panel-title">Watchlist</div>
+        <div class="watch-list" id="watchList"></div>
+        <div class="notice">
+          Watchlist matches are informational only. They do not determine whether a product is safe or unsafe for a specific person.
+        </div>
+
+        <div class="section-block">
+          <h3>Evidence standard</h3>
+          <div class="source-row"><span>Record source</span><strong>Visible</strong></div>
+          <div class="source-row"><span>Market</span><strong>Visible</strong></div>
+          <div class="source-row"><span>Verified date</span><strong>Visible</strong></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="drawer" id="pasteDrawer">
+      <div class="drawer-grid">
+        <div>
+          <div class="panel-title">Paste an ingredient list</div>
+          <textarea id="ingredientPaste" placeholder="Water, Glycerin, Niacinamide, Ceramide NP..."></textarea>
+          <div class="action-row"><button class="primary-btn" id="parseButton">Parse list</button></div>
+        </div>
+        <div>
+          <div class="panel-title">Parsed ingredients</div>
+          <div class="parse-output" id="parseOutput">
+            <p style="margin:0;color:#758ba0;font-size:.78rem">Paste a comma-separated list to match known records.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer" id="compareDrawer">
+      <div class="drawer-grid">
+        <div>
+          <div class="panel-title">Product A</div>
+          <select id="compareA" style="width:100%;height:2.7rem;border:1px solid var(--line);background:#fff;padding:0 .6rem"></select>
+        </div>
+        <div>
+          <div class="panel-title">Product B</div>
+          <select id="compareB" style="width:100%;height:2.7rem;border:1px solid var(--line);background:#fff;padding:0 .6rem"></select>
+        </div>
+      </div>
+      <div class="section-block" id="compareOutput"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><strong>Dermatology Collective</strong><span>Johns Hopkins University</span></div>
+    <span>Educational prototype. Product records shown here are demo data.</span>
+  </div>
+</footer>
+
+<script>
+const DB = {"ingredients": [{"id": "glycerin", "name": "Glycerin", "type": "Ingredient", "role": "Humectant", "aliases": ["Glycerol"], "summary": "A common humectant used to help attract and retain water within a formulation.", "products": ["barrier-lotion", "gel-cleanser", "mineral-spf"], "notes": "Function depends on the overall formulation and concentration."}, {"id": "niacinamide", "name": "Niacinamide", "type": "Ingredient", "role": "Skin-conditioning", "aliases": ["Nicotinamide"], "summary": "A form of vitamin B3 used in many leave-on skin-care formulations.", "products": ["barrier-lotion"], "notes": "Ingredient role and performance depend on the full formula."}, {"id": "ceramide-np", "name": "Ceramide NP", "type": "Ingredient", "role": "Skin-identical lipid", "aliases": [], "summary": "A ceramide-type lipid used in some barrier-supporting formulations.", "products": ["barrier-lotion"], "notes": "The presence of an ingredient alone does not determine product performance."}, {"id": "phenoxyethanol", "name": "Phenoxyethanol", "type": "Ingredient", "role": "Preservative", "aliases": [], "summary": "A preservative used to help protect cosmetic formulations from microbial growth.", "products": ["barrier-lotion", "gel-cleanser"], "notes": "Preservative systems are evaluated as part of the complete product."}, {"id": "fragrance", "name": "Fragrance", "type": "Ingredient label", "role": "Fragrance mixture", "aliases": ["Parfum"], "summary": "A labeling term that can represent a fragrance mixture rather than one single compound.", "products": ["mineral-spf"], "notes": "A label may not disclose every individual fragrance component."}], "products": [{"id": "barrier-lotion", "name": "Barrier Daily Lotion", "brand": "Demo Record", "category": "Moisturizer", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "niacinamide", "ceramide-np", "phenoxyethanol"], "source": "Placeholder manufacturer record"}, {"id": "gel-cleanser", "name": "Gentle Gel Cleanser", "brand": "Demo Record", "category": "Cleanser", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "phenoxyethanol"], "source": "Placeholder manufacturer record"}, {"id": "mineral-spf", "name": "Daily Mineral SPF", "brand": "Demo Record", "category": "Sunscreen", "market": "United States \u00b7 demo formulation", "verified": "Demo data", "ingredients": ["glycerin", "fragrance"], "source": "Placeholder manufacturer record"}]};
+const ingredientMap = Object.fromEntries(DB.ingredients.map(x => [x.id,x]));
+const productMap = Object.fromEntries(DB.products.map(x => [x.id,x]));
+let current = {kind:'ingredient', id:'glycerin'};
+
+const resultList = document.getElementById('resultList');
+const detailPanel = document.getElementById('detailPanel');
+const watchList = document.getElementById('watchList');
+const search = document.getElementById('universalSearch');
+const pasteDrawer = document.getElementById('pasteDrawer');
+const compareDrawer = document.getElementById('compareDrawer');
+
+function getWatch() {
+  try { return JSON.parse(localStorage.getItem('dcIngredientWatch') || '[]'); }
+  catch { return []; }
+}
+function saveWatch(items) {
+  localStorage.setItem('dcIngredientWatch', JSON.stringify(items));
+  renderWatch();
+}
+function toggleWatch(id) {
+  const items = getWatch();
+  const next = items.includes(id) ? items.filter(x => x !== id) : [...items,id];
+  saveWatch(next);
+  renderDetail();
+}
+function renderWatch() {
+  const ids = getWatch();
+  watchList.innerHTML = ids.length ? ids.map(id => {
+    const ing = ingredientMap[id];
+    return `<div class="watch-item"><b>${ing?.name || id}</b><button onclick="toggleWatch('${id}')">Remove</button></div>`;
+  }).join('') : '<div class="notice" style="margin-top:0">No ingredients saved yet.</div>';
+}
+
+function allResults(query='') {
+  const q = query.trim().toLowerCase();
+  const ingredients = DB.ingredients.filter(x => !q || [x.name,x.role,...x.aliases].join(' ').toLowerCase().includes(q))
+    .map(x => ({kind:'ingredient',id:x.id,name:x.name,meta:`Ingredient · ${x.role}`}));
+  const products = DB.products.filter(x => !q || [x.name,x.brand,x.category].join(' ').toLowerCase().includes(q))
+    .map(x => ({kind:'product',id:x.id,name:x.name,meta:`${x.brand} · ${x.category}`}));
+  return [...ingredients,...products];
+}
+function renderResults(query='') {
+  const rows = allResults(query);
+  resultList.innerHTML = rows.length ? rows.map(r => `
+    <button class="result ${current.kind===r.kind && current.id===r.id ? 'active':''}" data-kind="${r.kind}" data-id="${r.id}">
+      <strong>${r.name}</strong><span>${r.meta}</span>
+    </button>`).join('') : '<div class="notice" style="margin-top:0">No matching record.</div>';
+  resultList.querySelectorAll('.result').forEach(btn => btn.addEventListener('click', () => {
+    current = {kind:btn.dataset.kind,id:btn.dataset.id};
+    renderResults(search.value); renderDetail();
+  }));
+}
+function ingredientProductNames(id) {
+  return DB.products.filter(p => p.ingredients.includes(id)).map(p => p.name);
+}
+function renderDetail() {
+  if (current.kind === 'ingredient') {
+    const x = ingredientMap[current.id];
+    const watched = getWatch().includes(x.id);
+    const names = ingredientProductNames(x.id);
+    detailPanel.innerHTML = `
+      <div class="detail-head">
+        <div><h2>${x.name}</h2><p>${x.aliases.length ? 'Also listed as ' + x.aliases.join(', ') : 'Standard ingredient record'}</p></div>
+        <span class="role-chip">${x.role}</span>
+      </div>
+      <div class="card-grid">
+        <div class="info-card"><span>Role</span><strong>${x.role}</strong><p>Role can vary with the complete formula.</p></div>
+        <div class="info-card"><span>Products in demo database</span><strong>${names.length}</strong><p>${names.join(' · ') || 'None'}</p></div>
+        <div class="info-card"><span>Watchlist</span><strong>${watched ? 'Watching' : 'Not watching'}</strong><p>Stored only in this browser.</p></div>
+      </div>
+      <div class="section-block"><h3>What it does</h3><p>${x.summary}</p><p>${x.notes}</p></div>
+      <div class="section-block"><h3>Where it appears</h3><div class="tag-list">${names.map(n => `<span class="tag">${n}</span>`).join('') || '<span class="tag">No demo products</span>'}</div></div>
+      <div class="section-block"><h3>Record provenance</h3>
+        <div class="source-row"><span>Source</span><strong>Ingredient reference record</strong></div>
+        <div class="source-row"><span>Status</span><strong>Demo educational record</strong></div>
+      </div>
+      <div class="action-row">
+        <button class="primary-btn" onclick="toggleWatch('${x.id}')">${watched ? 'Remove from watchlist' : 'Add to watchlist'}</button>
+      </div>`;
+  } else {
+    const p = productMap[current.id];
+    const watch = getWatch();
+    const matches = p.ingredients.filter(id => watch.includes(id));
+    detailPanel.innerHTML = `
+      <div class="detail-head">
+        <div><h2>${p.name}</h2><p>${p.brand} · ${p.category}</p></div>
+        <span class="pill">${p.market}</span>
+      </div>
+      <div class="card-grid">
+        <div class="info-card"><span>Ingredients in record</span><strong>${p.ingredients.length}</strong><p>Click any ingredient below.</p></div>
+        <div class="info-card"><span>Watchlist matches</span><strong>${matches.length}</strong><p>${matches.map(id => ingredientMap[id].name).join(', ') || 'No matches'}</p></div>
+        <div class="info-card"><span>Verification</span><strong>${p.verified}</strong><p>Demo data only.</p></div>
+      </div>
+      <div class="section-block"><h3>Ingredient list</h3><div class="tag-list">${p.ingredients.map(id => `<button class="tag" onclick="openIngredient('${id}')">${ingredientMap[id].name}</button>`).join('')}</div></div>
+      <div class="section-block"><h3>Record provenance</h3>
+        <div class="source-row"><span>Source</span><strong>${p.source}</strong></div>
+        <div class="source-row"><span>Market</span><strong>${p.market}</strong></div>
+        <div class="source-row"><span>Last verified</span><strong>${p.verified}</strong></div>
+      </div>
+      <div class="notice">Manufacturer formulas can change. Always verify the ingredient list on the physical package you are using.</div>`;
+  }
+}
+function openIngredient(id) {
+  current = {kind:'ingredient',id};
+  search.value = ingredientMap[id].name;
+  renderResults(search.value); renderDetail();
+}
+
+search.addEventListener('input', () => renderResults(search.value));
+
+document.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('[data-mode]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const mode = btn.dataset.mode;
+  pasteDrawer.classList.toggle('open', mode==='paste');
+  compareDrawer.classList.toggle('open', mode==='compare');
+}));
+
+document.getElementById('parseButton').addEventListener('click', () => {
+  const raw = document.getElementById('ingredientPaste').value;
+  const tokens = raw.split(/[,;\n]/).map(x => x.trim()).filter(Boolean);
+  const matched = tokens.map(name => {
+    const key = name.toLowerCase();
+    const ing = DB.ingredients.find(x => x.name.toLowerCase()===key || x.aliases.some(a => a.toLowerCase()===key));
+    return {name,ing};
+  });
+  document.getElementById('parseOutput').innerHTML = `<div class="parsed">${matched.map(x => `<span class="tag" style="${x.ing?'border-color:#8fbfae;background:#f4fbf8':''}">${x.ing ? x.ing.name : x.name + ' · no record'}</span>`).join('')}</div>`;
+});
+
+const compareA = document.getElementById('compareA');
+const compareB = document.getElementById('compareB');
+[compareA,compareB].forEach((sel,idx) => {
+  sel.innerHTML = DB.products.map((p,i) => `<option value="${p.id}" ${i===idx?'selected':''}>${p.name}</option>`).join('');
+  sel.addEventListener('change', renderCompare);
+});
+function renderCompare() {
+  const a = productMap[compareA.value], b = productMap[compareB.value];
+  const shared = a.ingredients.filter(x => b.ingredients.includes(x));
+  const onlyA = a.ingredients.filter(x => !b.ingredients.includes(x));
+  const onlyB = b.ingredients.filter(x => !a.ingredients.includes(x));
+  document.getElementById('compareOutput').innerHTML = `
+    <h3>${a.name} vs. ${b.name}</h3>
+    <div class="card-grid">
+      <div class="info-card"><span>Shared</span><strong>${shared.length}</strong><p>${shared.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
+      <div class="info-card"><span>Only in A</span><strong>${onlyA.length}</strong><p>${onlyA.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
+      <div class="info-card"><span>Only in B</span><strong>${onlyB.length}</strong><p>${onlyB.map(id=>ingredientMap[id].name).join(', ') || 'None'}</p></div>
+    </div>`;
+}
+renderCompare();
+renderWatch();
+renderResults();
+renderDetail();
+</script>
+</body>
+</html>

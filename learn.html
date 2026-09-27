@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn | Dermatology Collective</title>
+  <style>
+    :root {
+      --bg:#f4f6f8;
+      --paper:#ffffff;
+      --paper-soft:#f7fbfe;
+      --blue:#002d72;
+      --ink:#3f556d;
+      --ink-soft:#6d8298;
+      --line:#bfd0e1;
+      --line-strong:#9fb8d2;
+      --teal:#69afa6;
+      --salmon:#df8b73;
+      --gold:#d8b45f;
+      --sky:#79a9da;
+      --radius:1.3rem;
+      --pad:clamp(1.2rem,3vw,2rem);
+      --header:72px;
+      --shadow:0 24px 48px rgba(0,45,114,.07);
+      --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+      --sans:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono:"SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    .container{width:min(1380px,calc(100% - 2 * var(--pad)));margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(244,246,248,.93);border-bottom:1px solid rgba(0,45,114,.08);backdrop-filter:blur(12px)}
+    .header-inner{height:var(--header);width:min(1480px,calc(100% - 2 * var(--pad)));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand-copy strong{display:block;color:var(--blue);font-size:1.05rem;line-height:1;letter-spacing:-.02em}
+    .brand-copy small{display:block;margin-top:.34rem;color:var(--ink-soft);font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+    .desktop-nav{display:flex;gap:1.65rem;align-items:center}
+    .desktop-nav a{color:var(--ink);font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.82}
+    .desktop-nav a.active,.desktop-nav a:hover{color:var(--blue);opacity:1}
+
+    .hero{padding:clamp(3.2rem,6vw,5rem) 0 4rem}
+    .hero-grid{display:block}
+    .hero-copy{background:var(--paper);border:1px solid rgba(0,45,114,.08);box-shadow:var(--shadow);padding:clamp(2.4rem,4vw,3.4rem);min-height:0;display:flex;flex-direction:column;justify-content:center;max-width:none}
+    .hero-kicker{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;color:var(--blue);font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .hero-kicker::before{content:"";width:3rem;height:1px;background:currentColor;opacity:.6}
+    h1{margin:0;color:var(--blue);font-family:var(--serif);font-size:clamp(4rem,8vw,6.8rem);font-weight:520;line-height:.88;letter-spacing:-.07em}
+    .hero-copy .lead{max-width:43rem;margin:1.25rem 0 0;color:var(--ink);font-size:1.06rem;line-height:1.72}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+    .button-link{display:inline-flex;align-items:center;gap:.7rem;min-height:3rem;padding:0 1.2rem;border:1px solid var(--blue);color:var(--blue);font-size:.76rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:transparent;transition:transform .2s ease,background .2s ease,color .2s ease}
+    .button-link.primary{background:var(--blue);color:#fff}
+    .button-link:hover{transform:translateY(-1px)}
+    .hero-visual{position:relative;overflow:hidden;border:1px solid rgba(0,45,114,.08);background:radial-gradient(circle at 78% 15%, rgba(104,172,229,.16), transparent 24%), linear-gradient(180deg,#f8fcff 0%, #eef5fb 100%);box-shadow:var(--shadow);padding:1.25rem;min-height:34rem}
+    .hero-visual::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle, rgba(0,45,114,.08) 1.1px, transparent 1.1px);background-size:22px 22px;opacity:.23;mask-image:linear-gradient(180deg, #000, transparent 80%);pointer-events:none}
+    .anatomy-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 15.5rem;gap:1rem;height:100%;align-items:end}
+    .anatomy-figure-wrap,.info-panel{background:rgba(255,255,255,.88);border:1px solid rgba(0,45,114,.08);box-shadow:0 12px 28px rgba(0,45,114,.06)}
+    .anatomy-figure-wrap{min-height:27rem;padding:1rem;display:flex;align-items:center;justify-content:center}
+    .info-panel{min-height:27rem;padding:1rem;display:flex;flex-direction:column;justify-content:space-between}
+    .part-index{color:#7a99b6;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .info-panel h3{margin:.45rem 0 0;color:var(--blue);font-family:var(--serif);font-size:1.95rem;font-weight:600;letter-spacing:-.04em;line-height:1.02}
+    .info-panel p{margin:.65rem 0 0;color:var(--ink);font-size:.9rem;line-height:1.65}
+    .part-buttons{display:grid;gap:.5rem;margin-top:1rem}
+    .part-buttons button{text-align:left;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.64rem .82rem;font-size:.78rem;font-weight:700;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+    .part-buttons button.active{border-color:var(--blue);background:#f7fbff}
+
+    .section{padding:0 0 4.8rem}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(20rem,.62fr);gap:2rem;align-items:end;margin-bottom:1.4rem}
+    .kicker{display:block;margin-bottom:.45rem;color:#6988a5;font-family:var(--mono);font-size:.61rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .section-head h2{margin:0;color:var(--blue);font-family:var(--serif);font-size:clamp(2.4rem,4vw,4rem);font-weight:560;letter-spacing:-.05em;line-height:.96}
+    .section-head p{margin:0;color:#61788f;font-size:.95rem;line-height:1.7}
+
+    .path-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+    .path-card{position:relative;min-height:17rem;padding:1rem 1.05rem 1.15rem;border:1px solid var(--line);background:var(--paper);overflow:hidden}
+    .path-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--accent,#79a9da)}
+    .path-card.biology{--accent:var(--sky)} .path-card.conditions{--accent:var(--salmon)} .path-card.labels{--accent:var(--teal)} .path-card.evidence{--accent:var(--gold)}
+    .path-art{height:6.8rem;display:grid;place-items:center;margin-bottom:.7rem}
+    .path-art svg{width:11rem;height:6.6rem;display:block}
+    .eyebrow{color:#7895b0;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .path-card h3{margin:.55rem 0 .35rem;color:var(--blue);font-family:var(--serif);font-size:1.9rem;font-weight:580;letter-spacing:-.045em;line-height:1.02}
+    .path-card p{margin:0;color:#5e7488;font-size:.84rem;line-height:1.6}
+
+    .interactive-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:1rem}
+    .interactive-card{background:var(--paper);border:1px solid var(--line);padding:1rem;min-height:27rem;position:relative;overflow:hidden}
+    .interactive-card h3{margin:.35rem 0 0;color:var(--blue);font-family:var(--serif);font-size:2rem;font-weight:580;letter-spacing:-.045em;line-height:1.05}
+    .subcopy{margin:.5rem 0 1rem;color:#60788f;font-size:.86rem;line-height:1.65}
+    .figure-shell{position:relative;height:16.2rem;border:1px solid rgba(0,45,114,.08);background:linear-gradient(180deg,#fff,#f6fbff);overflow:hidden}
+    .step-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+    .step-toolbar button,.label-toolbar button{border:1px solid var(--line);background:#fff;color:var(--blue);padding:.55rem .8rem;font-size:.74rem;font-weight:700;cursor:pointer}
+    .step-toolbar button.active,.label-toolbar button.active{border-color:var(--blue);background:#f5f9ff}
+    .explain-box{margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(0,45,114,.08);color:var(--ink);font-size:.86rem;line-height:1.65;min-height:4rem}
+    .label-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.85rem}
+    .knowledge-card{display:flex;flex-direction:column;justify-content:space-between}
+    .knowledge-question{margin-top:.8rem;padding:1rem;border:1px solid rgba(0,45,114,.08);background:#f8fbff}
+    .knowledge-options,.module-quiz-options{display:grid;gap:.6rem;margin-top:.9rem}
+    .knowledge-options button,.module-quiz-options button{text-align:left;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.74rem .82rem;font-size:.78rem;cursor:pointer}
+    .quiz-feedback,.module-quiz-feedback{min-height:1.4rem;margin-top:.75rem;color:#5d7288;font-size:.8rem;font-weight:600}
+    .note-strip{margin-top:1rem;padding:1rem 1.1rem;border:1px solid var(--line);background:#fff;color:#5f758a;font-size:.82rem;line-height:1.65}
+    .triple-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .mini-card{padding:1rem;border:1px solid var(--line);background:#fff;min-height:15rem}
+    .mini-visual{height:7rem;border:1px solid rgba(0,45,114,.08);background:linear-gradient(180deg,#fff,#f6fbff);margin-bottom:.85rem;display:grid;place-items:center}
+    .mini-visual svg{width:100%;height:100%}
+    .mini-card h4{margin:0;color:var(--blue);font-family:var(--serif);font-size:1.65rem;font-weight:600;letter-spacing:-.04em}
+    .mini-card p{margin:.4rem 0 0;color:#60758a;font-size:.82rem;line-height:1.6}
+
+    .library-grid{display:grid;gap:.85rem}
+    .module-card{background:var(--paper);border:1px solid var(--line);overflow:hidden}
+    .module-card summary{list-style:none;padding:1rem 1.15rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer}
+    .module-card summary::-webkit-details-marker{display:none}
+    .module-chip{display:inline-block;margin-bottom:.55rem;color:#6f8aa5;font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+    .module-summary strong{display:block;color:var(--blue);font-family:var(--serif);font-size:1.48rem;font-weight:600;letter-spacing:-.04em;line-height:1.06}
+    .module-summary p{margin:.35rem 0 0;color:#61788f;font-size:.82rem;line-height:1.55}
+    .summary-action{color:var(--blue);font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .module-body{border-top:1px solid rgba(0,45,114,.08);padding:1rem 1.15rem 1.15rem}
+    .module-utility-row{display:flex;justify-content:space-between;gap:2rem;align-items:flex-start;margin-bottom:.9rem}
+    .meta-label,.support-kicker{display:block;margin-bottom:.35rem;color:#6f89a5;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .module-notes p{margin:0;color:#60758a;font-size:.82rem;line-height:1.55;max-width:40rem}
+    .module-links{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+    .module-links a{color:var(--blue);font-size:.72rem;font-weight:700;white-space:nowrap}
+    .pdf-frame{width:100%;height:42rem;border:1px solid rgba(0,45,114,.08);background:#fff}
+    .pdf-fallback{display:grid;place-items:center;height:100%;text-align:center;padding:2rem;color:#62788e}
+    .module-support-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin-top:1rem}
+    .support-card{border:1px solid rgba(0,45,114,.08);background:#f9fcff;padding:.95rem}
+    .support-card h4{margin:0 0 .45rem;color:var(--blue);font-size:1rem}
+    .support-card p{margin:0;color:#5f758a;font-size:.8rem;line-height:1.6}
+    .site-footer{padding:2rem 0 2.5rem;border-top:1px solid rgba(0,45,114,.08);background:#eff4f8}
+    .footer-main{width:min(1380px,calc(100% - 2 * var(--pad)));margin:0 auto;display:flex;justify-content:space-between;gap:1rem;align-items:end;flex-wrap:wrap}
+    .footer-main strong{display:block;color:var(--blue);font-size:1rem}
+    .footer-main span{color:#6a849e;font-size:.82rem}
+    .footer-note{color:#61788f;font-size:.82rem}
+    @media(max-width:1120px){.hero-grid,.interactive-grid,.section-head,.anatomy-layout{grid-template-columns:1fr}.path-grid,.triple-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-support-grid{grid-template-columns:1fr}.hero-copy,.hero-visual{min-height:auto}.info-panel{min-height:auto}}
+    @media(max-width:760px){.path-grid,.triple-grid{grid-template-columns:1fr}.module-utility-row{flex-direction:column}.pdf-frame{height:28rem}.module-card summary{flex-direction:column;align-items:start}.footer-main{flex-direction:column;align-items:start}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand brand-textonly" href="index.html" aria-label="Dermatology Collective home">
+        <span class="brand-copy">
+          <strong>Dermatology Collective</strong>
+          <small>Johns Hopkins University</small>
+        </span>
+      </a>
+      <nav class="desktop-nav" aria-label="Learn page navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html" class="active">Learn</a>
+        <a href="#interactives">Interactives</a>
+        <a href="#module-library">Lessons</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="hero-kicker">Learn</span>
+          <h1>See how<br>dermatology works.</h1>
+          <p class="lead">Explore how your skin works through interactive visuals, short lessons, and knowledge checks. You can move from basic anatomy to common skin conditions, sun protection, everyday care, and the evidence behind what you are reading.</p>
+          <div class="hero-actions">
+            <a class="button-link primary" href="#module-library">Open lesson library</a>
+            <a class="button-link" href="#interactives">Try interactives</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Explore by topic</span>
+            <h2>Choose where you want to start.</h2>
+          </div>
+          <p>Start with basic skin biology, move into common conditions and everyday care, or jump directly to a topic that matters to you. Each section connects the explanation to a visual model and a short knowledge check.</p>
+        </div>
+        <div class="path-grid">
+          
+        <article class="path-card biology">
+          <div class="path-art">
+            <svg viewBox="0 0 210 126" aria-hidden="true">
+              <rect x="18" y="20" width="130" height="86" rx="16" fill="#fff" stroke="#bfd0e1"/>
+              <path d="M24 34 C42 27, 61 34, 79 31 C99 28, 118 38, 141 30 L141 44 L24 44 Z" fill="#f7e7dc" stroke="#eec7b3"/>
+              <rect x="24" y="44" width="117" height="16" fill="#efc0a8"/>
+              <rect x="24" y="60" width="117" height="28" fill="#d99578"/>
+              <rect x="24" y="88" width="117" height="18" fill="#e4c66f"/>
+              <path d="M76 34 C79 54, 79 77, 76 90" stroke="#6c493d" stroke-width="12" stroke-linecap="round"/>
+              <circle cx="95" cy="59" r="8" fill="#69afa6" stroke="#0b418f"/>
+              <circle cx="108" cy="55" r="6" fill="#71b8cf" stroke="#0b418f"/>
+              <circle cx="170" cy="49" r="24" fill="#fff" stroke="#78a3cb"/>
+              <ellipse cx="160" cy="42" rx="8" ry="6" fill="#f2caba" stroke="#a8746d"/>
+              <ellipse cx="179" cy="53" rx="8" ry="6" fill="#f2caba" stroke="#a8746d"/>
+              <circle cx="160" cy="42" r="2.2" fill="#cb8189"/>
+              <circle cx="179" cy="53" r="2.2" fill="#cb8189"/>
+            </svg>
+          </div>
+          <span class="eyebrow">01 · Skin foundations</span>
+          <h3>Biology</h3>
+          <p>See how the epidermis, dermis, follicles, glands, and vessels work together.</p>
+        </article>
+        <article class="path-card conditions">
+          <div class="path-art">
+            <svg viewBox="0 0 210 126" aria-hidden="true">
+              <rect x="26" y="28" width="52" height="68" rx="10" fill="#fff" stroke="#bfd0e1"/>
+              <rect x="30" y="36" width="44" height="52" rx="8" fill="#fcfcfd" stroke="#d0dce8"/>
+              <path d="M34 46 C42 44, 48 48, 56 46 C63 44, 69 48, 71 46" stroke="#dd9c7d" stroke-width="2" fill="none"/>
+              <path d="M34 61 C44 57, 52 60, 63 58" stroke="#c85f66" stroke-width="3" fill="none"/>
+              <circle cx="122" cy="60" r="24" fill="#fff" stroke="#0b418f" stroke-width="2"/>
+              <ellipse cx="110" cy="56" rx="8" ry="6" fill="#f2caba" stroke="#a8746d"/>
+              <ellipse cx="126" cy="48" rx="8" ry="6" fill="#f2caba" stroke="#a8746d"/>
+              <ellipse cx="131" cy="67" rx="8" ry="6" fill="#f2caba" stroke="#a8746d"/>
+              <circle cx="110" cy="56" r="2.3" fill="#cb8189"/>
+              <circle cx="126" cy="48" r="2.3" fill="#cb8189"/>
+              <circle cx="131" cy="67" r="2.3" fill="#cb8189"/>
+              <path d="M79 62 C88 62, 92 62, 98 62" stroke="#83a8cc" stroke-dasharray="4 5" fill="none"/>
+              <rect x="132" y="26" width="18" height="18" rx="5" fill="#fff" stroke="#0b418f"/>
+              <path d="M141 30 L141 40 M136 35 L146 35" stroke="#0b418f" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="eyebrow">02 · Common conditions</span>
+          <h3>Context</h3>
+          <p>Connect skin biology to common conditions and the changes you may notice on the skin.</p>
+        </article>
+        <article class="path-card labels">
+          <div class="path-art">
+            <svg viewBox="0 0 210 126" aria-hidden="true">
+              <rect x="28" y="34" width="32" height="58" rx="12" fill="#fff" stroke="#0b418f"/>
+              <rect x="32" y="28" width="24" height="10" rx="4" fill="#f4f7fa" stroke="#0b418f"/>
+              <rect x="34" y="48" width="20" height="12" rx="5" fill="#f2c9b8" stroke="#c58e75"/>
+              <rect x="76" y="32" width="48" height="62" rx="10" fill="#fff" stroke="#0b418f"/>
+              <rect x="84" y="44" width="24" height="4" rx="2" fill="#6fa8dc"/>
+              <rect x="84" y="56" width="28" height="4" rx="2" fill="#69afa6"/>
+              <rect x="84" y="68" width="20" height="4" rx="2" fill="#d8b45f"/>
+              <g transform="translate(145 43)">
+                <rect x="0" y="0" width="42" height="38" rx="8" fill="#fff" stroke="#bfd0e1"/>
+                <rect x="8" y="9" width="26" height="5" rx="2.5" fill="#69afa6"/>
+                <rect x="8" y="19" width="20" height="5" rx="2.5" fill="#79a9da"/>
+                <rect x="8" y="29" width="15" height="5" rx="2.5" fill="#d8b45f"/>
+              </g>
+            </svg>
+          </div>
+          <span class="eyebrow">03 · Everyday skin care</span>
+          <h3>Labels + ingredients</h3>
+          <p>Learn how product labels and ingredient roles connect to skin biology and everyday care.</p>
+        </article>
+        <article class="path-card evidence">
+          <div class="path-art">
+            <svg viewBox="0 0 210 126" aria-hidden="true">
+              <rect x="32" y="30" width="42" height="56" rx="8" fill="#fff" stroke="#0b418f"/>
+              <path d="M66 30 L74 38 L74 86" fill="none" stroke="#0b418f"/>
+              <rect x="42" y="43" width="18" height="3.5" rx="2" fill="#6fa8dc"/>
+              <rect x="42" y="54" width="24" height="3.5" rx="2" fill="#69afa6"/>
+              <rect x="42" y="65" width="14" height="3.5" rx="2" fill="#d8b45f"/>
+              <rect x="116" y="34" width="48" height="24" rx="6" fill="#fff" stroke="#0b418f"/>
+              <polyline points="122,50 132,42 141,46 152,36" fill="none" stroke="#df8b73" stroke-width="2"/>
+              <rect x="110" y="71" width="60" height="22" rx="6" fill="#fff" stroke="#0b418f"/>
+              <rect x="120" y="78" width="5" height="8" rx="2" fill="#69afa6"/>
+              <rect x="130" y="74" width="5" height="12" rx="2" fill="#79a9da"/>
+              <rect x="140" y="80" width="5" height="6" rx="2" fill="#d8b45f"/>
+              <rect x="150" y="72" width="5" height="14" rx="2" fill="#69afa6"/>
+              <path d="M75 58 C89 58, 97 54, 115 48" stroke="#83a8cc" stroke-dasharray="4 5" fill="none"/>
+              <path d="M75 69 C90 73, 98 76, 111 81" stroke="#83a8cc" stroke-dasharray="4 5" fill="none"/>
+            </svg>
+          </div>
+          <span class="eyebrow">04 · Sources</span>
+          <h3>Evidence</h3>
+          <p>See where health information comes from and how evidence supports the explanation.</p>
+        </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interactives">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Interactive learning</span>
+            <h2>Interactive Learning</h2>
+          </div>
+          <p>Use the interactives below to explore skin structures, common conditions, and product labels. Move through each visual at your own pace and check your understanding as you go.</p>
+        </div>
+
+        <div class="interactive-grid">
+          <article class="interactive-card">
+            <span class="kicker">Mechanism explorer</span>
+            <h3>How can a normal follicle become an acne lesion?</h3>
+            <p class="subcopy">Move through a simplified acne pathway: a normal follicle, increased sebum, clogging, and inflammation. This visual is designed to explain the biology, not to diagnose your skin.</p>
+            <div class="figure-shell">
+              <svg viewBox="0 0 760 280" id="mechanismFigure" style="width:100%;height:100%" aria-label="Acne mechanism figure">
+                <rect x="0" y="0" width="760" height="280" fill="#fbfdff"/>
+                <path d="M50 58 L710 58" stroke="#d2e0ee"/>
+                <path d="M50 84 L710 84" stroke="#d2e0ee"/>
+                <path d="M50 110 L710 110" stroke="#d2e0ee"/>
+                <path d="M74 40 C140 36, 168 42, 222 40 C278 38, 318 45, 364 38 C415 31, 460 45, 514 37 C580 28, 628 44, 684 36 L684 132 L74 132 Z" fill="#f0c8b4"/>
+                <rect x="74" y="132" width="610" height="94" fill="#d69679"/>
+                <path d="M110 212 C250 208, 305 218, 640 212" stroke="#4f95cd" stroke-width="5" fill="none"/>
+                <path d="M140 206 C320 203, 470 208, 640 206" stroke="#cd6667" stroke-width="5" fill="none"/>
+                <path d="M266 46 C270 98, 268 154, 262 222" stroke="#6a473c" stroke-width="30" stroke-linecap="round"/>
+                <path d="M262 222 C258 238, 246 249, 232 255" stroke="#6a473c" stroke-width="16" fill="none" stroke-linecap="round"/>
+                <path id="mechSebum" d="M303 102 C330 87, 356 92, 371 112 C381 124, 375 145, 354 149 C337 152, 309 143, 297 125 C290 114, 292 108, 303 102 Z" fill="#7dc5bd" stroke="#2c7a74" stroke-width="2" opacity=".22"/>
+                <circle id="mechClog" cx="264" cy="94" r="14" fill="#f0ceb8" stroke="#bf8b76" opacity=".15"/>
+                <circle id="mechInflammation" cx="257" cy="138" r="44" fill="#df8578" opacity=".12"/>
+                <circle cx="257" cy="138" r="20" fill="#f0b9a6" opacity="0" id="mechCenter"/>
+                <g font-family="Inter, sans-serif" font-size="13" fill="#5f778f">
+                  <text x="118" y="258">Normal follicle</text>
+                  <text x="292" y="258">Sebum production</text>
+                  <text x="456" y="258">Clogging</text>
+                  <text x="600" y="258">Inflammation</text>
+                </g>
+                <g stroke="#8fb2d2" stroke-dasharray="5 5">
+                  <path d="M208 234 L290 234"/>
+                  <path d="M380 234 L462 234"/>
+                  <path d="M544 234 L620 234"/>
+                </g>
+              </svg>
+            </div>
+            <div class="step-toolbar">
+              <button class="active" data-step="normal">Normal</button>
+              <button data-step="sebum">Sebum</button>
+              <button data-step="clogging">Clogging</button>
+              <button data-step="inflammation">Inflammation</button>
+            </div>
+            <div class="explain-box" id="mechanismExplain">A follicle normally allows sebum and surface cells to move outward without obstruction.</div>
+          </article>
+
+          <article class="interactive-card">
+            <span class="kicker">Label interpreter</span>
+            <h3>How can you make sense of a product label?</h3>
+            <p class="subcopy">Product labels can be easier to understand when ingredients are grouped by their role and connected to what they do in the product and how they relate to the skin.</p>
+            <div class="figure-shell">
+              <svg viewBox="0 0 760 280" id="labelFigure" style="width:100%;height:100%" aria-label="Ingredient label interpretation figure">
+                <rect x="0" y="0" width="760" height="280" fill="#fbfdff"/>
+                <rect x="66" y="52" width="122" height="180" rx="20" fill="#fff" stroke="#0b418f" stroke-width="2"/>
+                <rect x="82" y="35" width="90" height="26" rx="10" fill="#f4f7fa" stroke="#0b418f"/>
+                <rect x="92" y="94" width="68" height="36" rx="10" fill="#f2c9b8" stroke="#c58e75"/>
+                <rect x="248" y="48" width="188" height="184" rx="18" fill="#fff" stroke="#0b418f" stroke-width="2"/>
+                <rect x="278" y="82" width="122" height="7" rx="4" fill="#79a9da" id="line1"/>
+                <rect x="278" y="104" width="136" height="7" rx="4" fill="#69afa6" id="line2"/>
+                <rect x="278" y="126" width="98" height="7" rx="4" fill="#d8b45f" id="line3"/>
+                <rect x="278" y="148" width="148" height="7" rx="4" fill="#df8b73" id="line4"/>
+                <g transform="translate(548 68)" id="ingredientRoleCard">
+                  <rect x="0" y="0" width="72" height="68" rx="12" fill="#fff" stroke="#bfd0e1"/>
+                  <rect x="12" y="15" width="46" height="7" rx="3.5" fill="#69afa6"/>
+                  <rect x="12" y="30" width="36" height="7" rx="3.5" fill="#79a9da"/>
+                  <rect x="12" y="45" width="28" height="7" rx="3.5" fill="#d8b45f"/>
+                </g>
+                <circle id="labelCellWrap" cx="599" cy="177" r="28" fill="#fff" stroke="#78a3cb" stroke-width="2"/>
+                <ellipse cx="587" cy="170" rx="10" ry="8" fill="#f1cab9" stroke="#a8746d"/>
+                <ellipse cx="607" cy="181" rx="10" ry="8" fill="#f1cab9" stroke="#a8746d"/>
+                <circle cx="587" cy="170" r="2.6" fill="#cb8189"/>
+                <circle cx="607" cy="181" r="2.6" fill="#cb8189"/>
+                <path id="labelLink1" d="M160 112 C206 112, 229 112, 248 112" stroke="#83a8cc" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+                <path id="labelLink2" d="M436 108 C487 108, 518 100, 552 91" stroke="#83a8cc" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+                <path id="labelLink3" d="M436 151 C498 154, 538 167, 574 177" stroke="#83a8cc" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+              </svg>
+            </div>
+            <div class="label-toolbar">
+              <button class="active" data-label="label">Label</button>
+              <button data-label="role">Role</button>
+              <button data-label="context">Skin context</button>
+              <button data-label="relevance">Skin relevance</button>
+            </div>
+            <div class="explain-box" id="labelExplain">Start with the label itself. First identify what is listed, then explore what those ingredients may do in the formulation.</div>
+          </article>
+        </div>
+
+        <div class="note-strip"><strong style="color:var(--blue)">Evidence note.</strong> This information is for education and does not replace care from a qualified health professional. If you have a new, severe, or persistent skin concern, consider discussing it with a clinician.</div>
+      </div>
+    </section>
+
+    <section class="section" id="module-library">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Lesson library</span>
+            <h2>Explore the lesson library.</h2>
+          </div>
+          <p>Open a lesson, use the companion handout if you want more practice, and finish with a short concept check to see what you remember.</p>
+        </div>
+        <div class="library-grid">
+          
+      <details class="module-card" open>
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Skin Foundations</span>
+            <strong>Module 1. Skin Anatomy and Function</strong>
+            <p>Layers of the skin, barrier structure, follicles, glands, vessels, and core anatomy.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module1_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_1_Handout_V4_FINAL(1).pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module1_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module1_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Skin Anatomy and Function</h4>
+              <p>Your skin has distinct layers with different jobs. The epidermis forms the outer barrier, while deeper layers contain structures such as follicles, glands, nerves, blood vessels, and fat.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Which layer serves as the skin's most direct external barrier?</h4>
+              <div class="module-quiz" data-module="1" data-explanation="Correct. The epidermis is the outermost skin layer and forms the direct barrier to the environment.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Epidermis</button>
+<button type="button" data-choice="1" data-correct="false">Hypodermis</button>
+<button type="button" data-choice="2" data-correct="false">Muscle fascia</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Skin Foundations</span>
+            <strong>Module 2. What Skin Does</strong>
+            <p>Barrier roles, temperature regulation, sensation, and protective functions.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module2_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_2_Handout_V5_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module2_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module2_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>What Skin Does</h4>
+              <p>Your skin protects your body, helps you sense the environment, and plays a role in temperature regulation and other everyday functions.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Which option best matches a major skin function?</h4>
+              <div class="module-quiz" data-module="2" data-explanation="Correct. Skin protects the body, helps regulate temperature, and supports sensation.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Protection, sensation, and thermoregulation</button>
+<button type="button" data-choice="1" data-correct="false">Making blood cells</button>
+<button type="button" data-choice="2" data-correct="false">Filtering urine</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Skin Foundations</span>
+            <strong>Module 3. Everyday Skin Care</strong>
+            <p>Cleansing, moisturization, and practical skin care habits.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module3_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_3_Handout_V2_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module3_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module3_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Everyday Skin Care</h4>
+              <p>Gentle cleansing and moisturizing can help support the skin barrier. A simple routine is often easier to follow and less likely to irritate sensitive skin.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Why can moisturizers be useful in basic skin care?</h4>
+              <div class="module-quiz" data-module="3" data-explanation="Correct. Moisturizers help support the barrier and reduce transepidermal water loss.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">They can support the barrier and reduce water loss</button>
+<button type="button" data-choice="1" data-correct="false">They permanently remove pigment</button>
+<button type="button" data-choice="2" data-correct="false">They replace all cleansing</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Protection + Prevention</span>
+            <strong>Module 4. Sun Safety</strong>
+            <p>Uv exposure, sun protection, and prevention strategies.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module4_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_4_Handout_V4_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module4_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module4_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Sun Safety</h4>
+              <p>Sun protection works best when several strategies are used together, including shade, protective clothing, and broad-spectrum sunscreen.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Which option best reflects a sun-safety strategy?</h4>
+              <div class="module-quiz" data-module="4" data-explanation="Correct. Sun protection works best as a combination of sunscreen and behavioral protection.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Broad-spectrum sunscreen plus protective habits</button>
+<button type="button" data-choice="1" data-correct="false">Only rinsing with water after exposure</button>
+<button type="button" data-choice="2" data-correct="false">Ignoring shade and protective clothing</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Conditions</span>
+            <strong>Module 5. Acne</strong>
+            <p>Follicles, sebum, keratin, inflammation, and common acne concepts.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module5_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_5_Handout_V2_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module5_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module5_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Acne</h4>
+              <p>Acne develops in the pilosebaceous unit, where hair follicles, sebum, keratin, and inflammation can interact.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Acne is most closely tied to which structure?</h4>
+              <div class="module-quiz" data-module="5" data-explanation="Correct. Acne centers on the pilosebaceous unit, including the hair follicle and sebaceous gland.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">The pilosebaceous unit</button>
+<button type="button" data-choice="1" data-correct="false">The kidney tubule</button>
+<button type="button" data-choice="2" data-correct="false">The alveolus</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Conditions</span>
+            <strong>Module 6. Eczema</strong>
+            <p>Barrier dysfunction, itch, inflammation, and triggers.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module6_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_6_Handout_V2.1_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module6_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module6_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Eczema</h4>
+              <p>Eczema often involves a weakened skin barrier, dryness, itch, and inflammation. Triggers and symptoms can vary from person to person.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Which idea is most associated with eczema?</h4>
+              <div class="module-quiz" data-module="6" data-explanation="Correct. Eczema is strongly associated with barrier dysfunction, itch, and inflammation.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Barrier dysfunction with itch and inflammation</button>
+<button type="button" data-choice="1" data-correct="false">Excess melanin production</button>
+<button type="button" data-choice="2" data-correct="false">Calcified plaques in blood vessels</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Conditions</span>
+            <strong>Module 7. Psoriasis</strong>
+            <p>Rapid skin turnover, plaques, inflammation, and pattern recognition.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module7_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_7_Handout_V2.1_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module7_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module7_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Psoriasis</h4>
+              <p>Psoriasis is an inflammatory skin condition associated with faster-than-usual skin-cell turnover and characteristic plaques.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Psoriasis is commonly explained using which concept?</h4>
+              <div class="module-quiz" data-module="7" data-explanation="Correct. Psoriasis is commonly framed around increased turnover and inflammation.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Accelerated skin turnover with inflammation</button>
+<button type="button" data-choice="1" data-correct="false">Loss of all sebaceous glands</button>
+<button type="button" data-choice="2" data-correct="false">Bacterial invasion of bone</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Conditions</span>
+            <strong>Module 8. Vitiligo</strong>
+            <p>Pigment loss, melanocytes, and clinical context.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="AAD_GSK_Module8_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_8_Handout_V2_FINAL.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="AAD_GSK_Module8_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="AAD_GSK_Module8_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Vitiligo</h4>
+              <p>Vitiligo involves loss of pigment when melanocytes are lost or stop functioning normally. Vitiligo is not contagious.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Vitiligo most directly involves changes in which cells?</h4>
+              <div class="module-quiz" data-module="8" data-explanation="Correct. Vitiligo involves the loss or dysfunction of melanocytes, which produce pigment.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Melanocytes</button>
+<button type="button" data-choice="1" data-correct="false">Platelets</button>
+<button type="button" data-choice="2" data-correct="false">Hepatocytes</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Protection + Prevention</span>
+            <strong>Module 9. Bites, Stings, and Plants</strong>
+            <p>Common exposures, skin reactions, and prevention.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="_AAD_GSK_Module9_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_9_worksheet.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="_AAD_GSK_Module9_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="_AAD_GSK_Module9_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Bites, Stings, and Plants</h4>
+              <p>Bites, stings, and plant exposures can cause different skin reactions. Prevention and knowing when to seek medical help are important parts of skin safety.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>What is a major goal of this lesson type?</h4>
+              <div class="module-quiz" data-module="9" data-explanation="Correct. This lesson centers on exposure recognition, reactions, and prevention.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Recognizing exposures and prevention strategies</button>
+<button type="button" data-choice="1" data-correct="false">Ranking cosmetic brands</button>
+<button type="button" data-choice="2" data-correct="false">Diagnosing heart disease</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Skin + Wellbeing</span>
+            <strong>Module 10. Skin and Self-Esteem</strong>
+            <p>Appearance, confidence, and psychosocial aspects of skin.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="_AAD_GSK_Module10_FInal.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_10_Worksheet.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="_AAD_GSK_Module10_FInal.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="_AAD_GSK_Module10_FInal.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Skin and Self-Esteem</h4>
+              <p>Skin conditions can affect confidence, social experiences, and daily life. Emotional wellbeing is an important part of understanding skin health.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Why does this lesson belong in the curriculum?</h4>
+              <div class="module-quiz" data-module="10" data-explanation="Correct. Skin education also intersects with emotion, confidence, and social experience.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Skin conditions can affect confidence and lived experience</button>
+<button type="button" data-choice="1" data-correct="false">Only to teach ingredient chemistry</button>
+<button type="button" data-choice="2" data-correct="false">Only to teach microscopy</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="module-card" >
+        <summary>
+          <div class="module-summary">
+            <span class="module-chip">Review</span>
+            <strong>Module 11. Wrap-Up and Review</strong>
+            <p>Review and knowledge consolidation.</p>
+          </div>
+          <span class="summary-action">Open lesson</span>
+        </summary>
+        <div class="module-body">
+          <div class="module-utility-row">
+            <div class="module-notes">
+              <span class="meta-label">Lesson material</span>
+              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+            </div>
+            <div class="module-links">
+              <a href="_AAD_GSK_Module11_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
+              <a href="AAD_GSK_Module_11_worksheet.pdf" target="_blank" rel="noreferrer">Open handout ↗</a>
+            </div>
+          </div>
+          <object class="pdf-frame" data="_AAD_GSK_Module11_Final.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>This PDF could not be displayed here.</p>
+              <a href="_AAD_GSK_Module11_Final.pdf" target="_blank" rel="noreferrer">Open the lesson PDF ↗</a>
+            </div>
+          </object>
+          <div class="module-support-grid">
+            <section class="support-card">
+              <span class="support-kicker">What to remember</span>
+              <h4>Wrap-Up and Review</h4>
+              <p>The main ideas connect skin structure, common conditions, everyday care, and reliable evidence so you can understand skin information more clearly.</p>
+            </section>
+            <section class="support-card quiz-card">
+              <span class="support-kicker">Knowledge check</span>
+              <h4>Which approach best helps you review the main ideas?</h4>
+              <div class="module-quiz" data-module="11" data-explanation="Correct. A good review connects skin biology, common conditions, everyday care, and reliable evidence.">
+                <div class="module-quiz-options">
+                  <button type="button" data-choice="0" data-correct="true">Connecting skin biology, conditions, everyday care, and evidence</button>
+<button type="button" data-choice="1" data-correct="false">Memorizing isolated buzzwords only</button>
+<button type="button" data-choice="2" data-correct="false">Skipping review entirely</button>
+                </div>
+                <div class="module-quiz-feedback" aria-live="polite"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+        </div>
+        <div class="note-strip"><strong style="color:var(--blue)">Using these lessons.</strong> Open any module to read the lesson, use the handout for extra practice, and finish with the concept check. You can move through the modules in order or choose the topic that is most useful to you.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-main">
+      <div><strong>Dermatology Collective</strong><span>Johns Hopkins University</span></div>
+      <div class="footer-note">Student-run educational project. Not a substitute for individualized medical care.</div>
+    </div>
+  </footer>
+
+  <script>
+    const partInfo = {
+      surface:['01','Skin surface','The skin surface is the part you can see and touch. It forms the outer barrier that helps protect the body from the environment.'],
+      follicle:['02','Hair follicle','Hair follicles extend into deeper skin and are important in common conditions such as acne because sebum, keratin, and inflammation can all involve the follicle.'],
+      gland:['03','Sebaceous gland','Sebaceous glands make sebum, an oily substance that helps lubricate the skin and hair and is also relevant to acne.'],
+      vessels:['04','Blood vessels','Blood vessels in the skin help support living tissue, regulate temperature, and deliver oxygen and nutrients.'],
+      cells:['05','Cell inset','The inset shows individual cells so you can connect what you see in a skin layer to the smaller structures that make up the tissue.']
+    };
+    const partTargets = {
+      surface:[238,167], follicle:[176,188], gland:[470,170], vessels:[320,289], cells:[543,114]
+    };
+    const ring = document.getElementById('highlightRing');
+    const partIndex = document.getElementById('partIndex');
+    const partTitle = document.getElementById('partTitle');
+    const partCopy = document.getElementById('partCopy');
+    const partButtons = [...document.querySelectorAll('.part-buttons button')];
+    partButtons.forEach(btn => btn.addEventListener('click', () => {
+      partButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const [idx,title,copy] = partInfo[btn.dataset.part];
+      partIndex.textContent = idx; partTitle.textContent = title; partCopy.textContent = copy;
+      const [x,y] = partTargets[btn.dataset.part];
+      ring.setAttribute('cx', x); ring.setAttribute('cy', y);
+    }));
+
+    const mechanismExplain = document.getElementById('mechanismExplain');
+    const mechButtons = [...document.querySelectorAll('.step-toolbar button')];
+    const mechSebum = document.getElementById('mechSebum');
+    const mechClog = document.getElementById('mechClog');
+    const mechInflammation = document.getElementById('mechInflammation');
+    const mechCenter = document.getElementById('mechCenter');
+    const mechText = {
+      normal:'A follicle normally allows sebum and surface cells to move outward without obstruction.',
+      sebum:'Sebaceous glands produce sebum, which becomes more relevant when the follicular environment changes.',
+      clogging:'When keratin and sebum accumulate, the follicular opening can narrow or become blocked.',
+      inflammation:'Inflammation around the follicle helps explain why a lesion can become red, swollen, and tender.'
+    };
+    function applyMechanism(step){
+      mechButtons.forEach(b => b.classList.toggle('active', b.dataset.step===step));
+      mechanismExplain.textContent = mechText[step];
+      mechSebum.style.opacity = (step==='sebum' || step==='clogging' || step==='inflammation') ? '1' : '.22';
+      mechClog.style.opacity = (step==='clogging' || step==='inflammation') ? '1' : '.15';
+      mechInflammation.style.opacity = step==='inflammation' ? '.55' : '.12';
+      mechCenter.style.opacity = step==='inflammation' ? '.72' : '0';
+    }
+    mechButtons.forEach(btn => btn.addEventListener('click', () => applyMechanism(btn.dataset.step)));
+    applyMechanism('normal');
+
+    const labelExplain = document.getElementById('labelExplain');
+    const labelButtons = [...document.querySelectorAll('.label-toolbar button')];
+    const labelState = {
+      label:'Start with the label itself. First identify what is listed, then explore what those ingredients may do in the formulation.',
+      role:'Next, look at the ingredient role: for example, whether it functions as a humectant, emollient, cleanser, preservative, or something else.',
+      context:'Connect the ingredient role to the skin or to the product formulation so the label becomes easier to interpret.',
+      relevance:'Finally, consider why the ingredient may matter in context, such as hydration, barrier support, cleansing, preservation, or formulation behavior.'
+    };
+    labelButtons.forEach(btn => btn.addEventListener('click', () => {
+      labelButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      labelExplain.textContent = labelState[btn.dataset.label];
+    }));
+
+    document.querySelectorAll('.module-quiz').forEach(quiz => {
+      const feedback = quiz.querySelector('.module-quiz-feedback');
+      const explanation = quiz.dataset.explanation;
+      quiz.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.dataset.correct === 'true') {
+            feedback.textContent = explanation;
+            feedback.style.color = '#2c7a74';
+          } else {
+            feedback.textContent = 'Try again. Look for the answer that best matches the main idea from the lesson.';
+            feedback.style.color = '#b65d59';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

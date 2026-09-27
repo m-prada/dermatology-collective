@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulation Watcher | Dermatology Collective</title>
+<style>
+:root{
+  --bg:#f4f6f8;
+  --paper:#fff;
+  --paper-soft:#f8fbfd;
+  --blue:#002d72;
+  --ink:#405870;
+  --muted:#6f859a;
+  --line:#bfd0e1;
+  --line2:#d9e3ec;
+  --sky:#79a9da;
+  --teal:#69afa6;
+  --salmon:#df8b73;
+  --gold:#d8b45f;
+  --green:#4f8d7f;
+  --red:#b86658;
+  --pad:clamp(1.2rem,3vw,2rem);
+  --header:72px;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;
+  --shadow:0 20px 50px rgba(0,45,114,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.container{width:min(1420px,calc(100% - 2 * var(--pad)));margin:0 auto}
+.site-header{
+  position:sticky;top:0;z-index:60;height:var(--header);
+  background:rgba(244,246,248,.94);border-bottom:1px solid rgba(0,45,114,.08);
+  backdrop-filter:blur(12px)
+}
+.header-inner{
+  height:100%;width:min(1480px,calc(100% - 2 * var(--pad)));margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem
+}
+.brand-copy strong{display:block;color:var(--blue);font-size:1.05rem;line-height:1;letter-spacing:-.02em}
+.brand-copy small{
+  display:block;margin-top:.34rem;color:var(--muted);font-family:var(--mono);
+  font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase
+}
+.nav{display:flex;gap:1.45rem;align-items:center;flex-wrap:wrap}
+.nav a{
+  color:#546b83;font-family:var(--mono);font-size:.66rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase
+}
+.nav a.active,.nav a:hover{color:var(--blue)}
+.hero{padding:clamp(3.5rem,6vw,5.5rem) 0 2.6rem}
+.hero-shell{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(24rem,.85fr);
+  gap:clamp(2rem,5vw,5rem);align-items:end
+}
+.kicker{
+  display:block;margin-bottom:.65rem;color:#6887a5;font-family:var(--mono);
+  font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase
+}
+.hero h1{
+  margin:0;color:var(--blue);font-family:var(--serif);
+  font-size:clamp(4rem,7vw,7rem);font-weight:520;line-height:.86;letter-spacing:-.07em
+}
+.hero-copy{
+  max-width:46rem;margin:1.2rem 0 0;color:#536b83;font-size:1.02rem;line-height:1.72
+}
+.hero-side{
+  border-left:3px solid #9dc6e8;padding:1rem 0 1rem 1.4rem;
+  background:linear-gradient(90deg,rgba(185,217,245,.18),transparent)
+}
+.hero-side strong{
+  display:block;color:var(--blue);font-family:var(--serif);font-size:1.55rem;
+  letter-spacing:-.03em
+}
+.hero-side p{margin:.45rem 0 0;color:#637991;font-size:.86rem;line-height:1.6}
+.workspace{padding:0 0 5rem}
+.workspace-shell{
+  border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)
+}
+.toolbar{
+  min-height:4.2rem;padding:.7rem .8rem;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line2);
+  background:#fbfdff;flex-wrap:wrap
+}
+.search-shell{
+  flex:1;min-width:18rem;display:flex;align-items:center;gap:.7rem;
+  height:2.8rem;border:1px solid #b8cde0;border-radius:99px;background:#fff;padding:0 1rem
+}
+.search-shell::before{
+  content:"";width:.78rem;height:.78rem;border:1.8px solid var(--blue);
+  border-radius:50%;box-shadow:7px 7px 0 -5.5px var(--blue);transform:rotate(-2deg)
+}
+.search-shell input{flex:1;border:0;outline:0;color:var(--blue);background:transparent}
+.toolbar-actions{display:flex;gap:.5rem;align-items:center}
+.tool-btn{
+  min-height:2.45rem;padding:0 .8rem;border:1px solid var(--line);
+  background:#fff;color:var(--blue);font-size:.7rem;font-weight:750
+}
+.tool-btn.active,.tool-btn:hover{border-color:#7ca9d0;background:#f4f9fd}
+.pill{
+  display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--line);
+  padding:.34rem .52rem;background:#fff;color:#5f7790;font-size:.56rem;font-weight:700
+}
+.workspace-grid{
+  display:grid;grid-template-columns:18rem minmax(0,1fr) 20rem;min-height:42rem
+}
+.sidebar{
+  border-right:1px solid var(--line2);background:#fbfdff;padding:.8rem
+}
+.sidebar.right{border-left:1px solid var(--line2);border-right:0}
+.panel-title{
+  color:#7691aa;font-family:var(--mono);font-size:.56rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:.2rem 0 .6rem
+}
+.result-list{display:grid;gap:.35rem}
+.result{
+  border:1px solid transparent;background:transparent;padding:.65rem;text-align:left;
+  width:100%
+}
+.result:hover,.result.active{border-color:#b8cee2;background:#fff}
+.result strong{display:block;color:var(--blue);font-size:.82rem}
+.result span{display:block;color:#8397aa;font-size:.58rem;margin-top:.18rem}
+.main-panel{padding:1rem 1.15rem}
+.detail-head{
+  display:flex;align-items:start;justify-content:space-between;gap:1rem;
+  padding-bottom:1rem;border-bottom:1px solid var(--line2)
+}
+.detail-head h2{
+  margin:0;color:var(--blue);font-family:var(--serif);font-size:2.6rem;
+  font-weight:580;letter-spacing:-.045em;line-height:1
+}
+.detail-head p{margin:.5rem 0 0;color:#647a90;font-size:.84rem}
+.role-chip{
+  display:inline-flex;border:1px solid #b6d6d0;background:#f1faf8;color:#3f7d76;
+  padding:.35rem .52rem;font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase
+}
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1rem}
+.info-card{border:1px solid var(--line2);background:#fbfdff;padding:.8rem;min-height:7rem}
+.info-card span{
+  display:block;color:#7990a6;font-family:var(--mono);font-size:.52rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em
+}
+.info-card strong{display:block;margin-top:.55rem;color:var(--blue);font-size:.92rem}
+.info-card p{margin:.35rem 0 0;color:#6c8195;font-size:.7rem;line-height:1.5}
+.section-block{margin-top:1rem;border-top:1px solid var(--line2);padding-top:1rem}
+.section-block h3{
+  margin:0;color:var(--blue);font-family:var(--serif);font-size:1.5rem;
+  font-weight:600;letter-spacing:-.035em
+}
+.section-block p{color:#647b91;font-size:.82rem;line-height:1.62}
+.tag-list{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.7rem}
+.tag{
+  border:1px solid var(--line);background:#fff;padding:.35rem .5rem;
+  color:#607991;font-size:.62rem
+}
+.action-row{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:.8rem}
+.primary-btn,.secondary-btn{
+  min-height:2.6rem;padding:0 .85rem;font-size:.72rem;font-weight:800;border:1px solid var(--blue)
+}
+.primary-btn{background:var(--blue);color:#fff}
+.secondary-btn{background:#fff;color:var(--blue)}
+.watch-list{display:grid;gap:.45rem}
+.watch-item{
+  border:1px solid var(--line2);background:#fff;padding:.6rem;display:flex;
+  align-items:center;justify-content:space-between;gap:.5rem
+}
+.watch-item b{color:var(--blue);font-size:.72rem}
+.watch-item button{border:0;background:transparent;color:#8a99a8;font-size:.68rem}
+.notice{
+  margin-top:.8rem;padding:.7rem;border:1px solid #d7e2ec;background:#f8fbfd;
+  color:#6c8195;font-size:.67rem;line-height:1.5
+}
+.drawer{
+  display:none;border-top:1px solid var(--line2);background:#fbfdff;padding:1rem
+}
+.drawer.open{display:block}
+.drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.drawer textarea{
+  width:100%;min-height:9rem;border:1px solid var(--line);background:#fff;
+  padding:.8rem;color:#466077;resize:vertical
+}
+.parse-output{border:1px solid var(--line);background:#fff;padding:.8rem;min-height:9rem}
+.parse-output .parsed{display:flex;flex-wrap:wrap;gap:.35rem}
+.source-row{
+  display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;
+  border-bottom:1px solid #edf1f5;color:#6d8194;font-size:.66rem
+}
+.source-row:last-child{border-bottom:0}
+.footer{
+  padding:2rem 0 2.5rem;border-top:1px solid rgba(0,45,114,.08);background:#eef4f8
+}
+.footer-inner{
+  width:min(1420px,calc(100% - 2 * var(--pad)));margin:0 auto;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap
+}
+.footer strong{display:block;color:var(--blue)}
+.footer span{color:#71879c;font-size:.8rem}
+@media(max-width:1120px){
+  .hero-shell{grid-template-columns:1fr}
+  .workspace-grid{grid-template-columns:16rem 1fr}
+  .sidebar.right{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line2)}
+  .card-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .nav{display:none}
+  .workspace-grid{grid-template-columns:1fr}
+  .sidebar{border-right:0;border-bottom:1px solid var(--line2)}
+  .drawer-grid{grid-template-columns:1fr}
+}
+
+
+.watch-shell{display:grid;grid-template-columns:17rem minmax(0,1fr);min-height:44rem}
+.product-rail{border-right:1px solid var(--line2);background:#fbfdff;padding:.8rem}
+.watcher-main{padding:1rem}
+.product-summary{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-bottom:1rem;border-bottom:1px solid var(--line2)
+}
+.product-summary h2{
+  margin:0;color:var(--blue);font-family:var(--serif);
+  font-size:2.6rem;font-weight:580;letter-spacing:-.045em;line-height:1
+}
+.product-summary p{margin:.45rem 0 0;color:#657b90;font-size:.82rem}
+.timeline{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.8rem;
+  margin-top:1rem;padding:1rem;border:1px solid var(--line2);background:#fbfdff
+}
+.timeline-node{
+  width:1rem;height:1rem;border-radius:50%;border:2px solid var(--blue);background:#fff
+}
+.timeline-node.current{background:var(--teal);border-color:var(--teal)}
+.timeline-line{height:2px;background:linear-gradient(90deg,#9bbbd6,#6fa7d6,#69afa6)}
+.timeline-labels{display:flex;justify-content:space-between;color:#748ca2;font-size:.58rem;margin-top:.35rem}
+.diff-layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.version-card{border:1px solid var(--line);background:#fff;padding:1rem}
+.version-card header{display:flex;align-items:start;justify-content:space-between;gap:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--line2)}
+.version-card h3{margin:0;color:var(--blue);font-family:var(--serif);font-size:1.65rem;font-weight:600}
+.version-card header span{color:#758ca2;font-family:var(--mono);font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.ingredient-stack{display:grid;gap:.35rem;margin-top:.8rem}
+.ingredient-row{
+  display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+  min-height:2.25rem;padding:.45rem .55rem;border:1px solid #e0e8ef;background:#fbfdff
+}
+.ingredient-row b{color:#506a83;font-size:.72rem}
+.status{
+  padding:.18rem .35rem;font-size:.48rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em
+}
+.status.same{background:#eef4f8;color:#70879b}
+.status.added{background:#f3faf8;color:#477f76;border:1px solid #b8d8d1}
+.status.removed{background:#fff7f4;color:#b66858;border:1px solid #ecc5ba}
+.diff-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1rem}
+.diff-summary .info-card{min-height:6.4rem}
+.version-controls{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.version-controls select{height:2.55rem;border:1px solid var(--line);background:#fff;padding:0 .6rem;color:#4d657d}
+.provenance-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:1000px){.watch-shell{grid-template-columns:1fr}.product-rail{border-right:0;border-bottom:1px solid var(--line2)}}
+@media(max-width:760px){.diff-layout,.diff-summary,.provenance-grid{grid-template-columns:1fr}}
+
+.watcher-hero-title{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  font-size:clamp(3.35rem,6vw,6.5rem) !important;
+  line-height:.9 !important;
+}
+.watcher-hero-title span{
+  display:block;
+  white-space:nowrap;
+}
+@media(max-width:620px){
+  .watcher-hero-title{
+    font-size:clamp(2.75rem,12vw,4.3rem) !important;
+  }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html"><span class="brand-copy"><strong>Dermatology Collective</strong><small>Johns Hopkins University</small></span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="learn.html">Learn</a>
+      <a href="ingredient-lab.html">Ingredient Lab</a>
+      <a class="active" href="formulation-watcher.html">Formulation Watcher</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-shell">
+    <div>
+      <span class="kicker">Formulation Watcher</span>
+      <h1 class="watcher-hero-title"><span>Products change.</span><span>Records should too.</span></h1>
+      <p class="hero-copy">
+        Compare documented versions of a product side by side, see what was added or removed,
+        and keep the source and verification context visible.
+      </p>
+    </div>
+    <aside class="hero-side">
+      <strong>Change tracking, not product ranking.</strong>
+      <p>This page shows documented formulation differences. It does not decide that one formula is safer, better, or worse than another.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="workspace">
+  <div class="container workspace-shell">
+    <div class="toolbar">
+      <label class="search-shell">
+        <input id="watchSearch" type="search" placeholder="Search demo product records..." aria-label="Search formulation records">
+      </label>
+      <div class="toolbar-actions">
+        <button class="tool-btn" id="watchProductButton">Watch this product</button>
+      </div>
+    </div>
+
+    <div class="watch-shell">
+      <aside class="product-rail">
+        <div class="panel-title">Products</div>
+        <div class="result-list" id="productList"></div>
+        <div class="section-block">
+          <div class="panel-title">Watching</div>
+          <div class="watch-list" id="productWatchList"></div>
+        </div>
+        <div class="notice">This prototype stores the watchlist only in your browser. It does not send automatic alerts.</div>
+      </aside>
+
+      <section class="watcher-main">
+        <div class="product-summary">
+          <div><h2 id="productTitle"></h2><p id="productMeta"></p></div>
+          <span class="pill">Demo formulation history</span>
+        </div>
+
+        <div class="version-controls" style="margin-top:1rem">
+          <div><span class="panel-title" style="display:block">Compare</span><select id="versionA"></select></div>
+          <div><span class="panel-title" style="display:block">Against</span><select id="versionB"></select></div>
+        </div>
+
+        <div class="timeline">
+          <span class="timeline-node"></span><span class="timeline-line"></span><span class="timeline-node current"></span>
+        </div>
+        <div class="timeline-labels"><span id="timelineA"></span><span id="timelineB"></span></div>
+
+        <div class="diff-summary">
+          <div class="info-card"><span>Added</span><strong id="addedCount">0</strong><p id="addedNames"></p></div>
+          <div class="info-card"><span>Removed</span><strong id="removedCount">0</strong><p id="removedNames"></p></div>
+          <div class="info-card"><span>Unchanged</span><strong id="sameCount">0</strong><p id="sameNames"></p></div>
+        </div>
+
+        <div class="diff-layout">
+          <article class="version-card">
+            <header><div><h3 id="versionATitle"></h3><span id="versionADate"></span></div></header>
+            <div class="ingredient-stack" id="stackA"></div>
+          </article>
+          <article class="version-card">
+            <header><div><h3 id="versionBTitle"></h3><span id="versionBDate"></span></div></header>
+            <div class="ingredient-stack" id="stackB"></div>
+          </article>
+        </div>
+
+        <div class="section-block">
+          <h3>Record provenance</h3>
+          <div class="provenance-grid">
+            <div class="info-card"><span>Earlier source</span><strong id="sourceA"></strong><p id="marketA"></p></div>
+            <div class="info-card"><span>Current source</span><strong id="sourceB"></strong><p id="marketB"></p></div>
+          </div>
+        </div>
+
+        <div class="notice">
+          Formulation records reflect the sources and dates shown here. Manufacturers may reformulate products, so the physical package remains the most immediate ingredient record for the product you have.
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><strong>Dermatology Collective</strong><span>Johns Hopkins University</span></div>
+    <span>Educational prototype. Formulation histories shown here are demo data.</span>
+  </div>
+</footer>
+
+<script>
+const DB = {"products": [{"id": "barrier-lotion", "name": "Barrier Daily Lotion", "brand": "Demo Record", "category": "Moisturizer", "versions": [{"id": "v1", "label": "Earlier formula", "date": "2025 demo", "ingredients": ["Water", "Glycerin", "Niacinamide", "Phenoxyethanol", "Fragrance"], "source": "Placeholder archived manufacturer record", "market": "United States \u00b7 demo"}, {"id": "v2", "label": "Current formula", "date": "2026 demo", "ingredients": ["Water", "Glycerin", "Niacinamide", "Ceramide NP", "Phenoxyethanol"], "source": "Placeholder current manufacturer record", "market": "United States \u00b7 demo"}]}, {"id": "gentle-cleanser", "name": "Gentle Gel Cleanser", "brand": "Demo Record", "category": "Cleanser", "versions": [{"id": "v1", "label": "Earlier formula", "date": "2025 demo", "ingredients": ["Water", "Glycerin", "Mild Surfactant A", "Phenoxyethanol"], "source": "Placeholder archived manufacturer record", "market": "United States \u00b7 demo"}, {"id": "v2", "label": "Current formula", "date": "2026 demo", "ingredients": ["Water", "Glycerin", "Mild Surfactant B", "Phenoxyethanol"], "source": "Placeholder current manufacturer record", "market": "United States \u00b7 demo"}]}]};
+const productMap = Object.fromEntries(DB.products.map(p => [p.id,p]));
+let currentProductId = DB.products[0].id;
+
+const productList = document.getElementById('productList');
+const search = document.getElementById('watchSearch');
+const versionA = document.getElementById('versionA');
+const versionB = document.getElementById('versionB');
+
+function getWatch() {
+  try { return JSON.parse(localStorage.getItem('dcProductWatch') || '[]'); }
+  catch { return []; }
+}
+function saveWatch(items) {
+  localStorage.setItem('dcProductWatch', JSON.stringify(items)); renderWatch();
+}
+function toggleProductWatch() {
+  const ids = getWatch();
+  const next = ids.includes(currentProductId) ? ids.filter(x=>x!==currentProductId) : [...ids,currentProductId];
+  saveWatch(next); updateWatchButton();
+}
+function updateWatchButton() {
+  document.getElementById('watchProductButton').textContent =
+    getWatch().includes(currentProductId) ? 'Remove from watchlist' : 'Watch this product';
+}
+function renderWatch() {
+  const ids = getWatch();
+  document.getElementById('productWatchList').innerHTML = ids.length
+    ? ids.map(id => `<div class="watch-item"><b>${productMap[id]?.name || id}</b><button onclick="openProduct('${id}')">Open</button></div>`).join('')
+    : '<div class="notice" style="margin-top:0">No products saved yet.</div>';
+}
+function renderProducts(query='') {
+  const q = query.trim().toLowerCase();
+  const rows = DB.products.filter(p => !q || [p.name,p.brand,p.category].join(' ').toLowerCase().includes(q));
+  productList.innerHTML = rows.map(p => `
+    <button class="result ${p.id===currentProductId?'active':''}" data-id="${p.id}">
+      <strong>${p.name}</strong><span>${p.brand} · ${p.category}</span>
+    </button>`).join('');
+  productList.querySelectorAll('.result').forEach(btn => btn.addEventListener('click',()=>openProduct(btn.dataset.id)));
+}
+function openProduct(id) {
+  currentProductId = id;
+  renderProducts(search.value);
+  setupVersions();
+  renderDiff();
+  updateWatchButton();
+}
+function setupVersions() {
+  const p = productMap[currentProductId];
+  const options = p.versions.map(v => `<option value="${v.id}">${v.label} · ${v.date}</option>`).join('');
+  versionA.innerHTML = options;
+  versionB.innerHTML = options;
+  versionA.selectedIndex = 0;
+  versionB.selectedIndex = Math.max(0,p.versions.length-1);
+}
+function diffVersions(a,b) {
+  const added = b.ingredients.filter(x => !a.ingredients.includes(x));
+  const removed = a.ingredients.filter(x => !b.ingredients.includes(x));
+  const same = a.ingredients.filter(x => b.ingredients.includes(x));
+  return {added,removed,same};
+}
+function stackHTML(version, diff, side) {
+  return version.ingredients.map(name => {
+    let status = 'same', label = 'unchanged';
+    if (side==='A' && diff.removed.includes(name)) { status='removed'; label='removed'; }
+    if (side==='B' && diff.added.includes(name)) { status='added'; label='added'; }
+    return `<div class="ingredient-row"><b>${name}</b><span class="status ${status}">${label}</span></div>`;
+  }).join('');
+}
+function renderDiff() {
+  const p = productMap[currentProductId];
+  const a = p.versions.find(v=>v.id===versionA.value) || p.versions[0];
+  const b = p.versions.find(v=>v.id===versionB.value) || p.versions[p.versions.length-1];
+  const d = diffVersions(a,b);
+
+  document.getElementById('productTitle').textContent = p.name;
+  document.getElementById('productMeta').textContent = `${p.brand} · ${p.category}`;
+  document.getElementById('timelineA').textContent = a.date;
+  document.getElementById('timelineB').textContent = b.date;
+
+  document.getElementById('addedCount').textContent = d.added.length;
+  document.getElementById('removedCount').textContent = d.removed.length;
+  document.getElementById('sameCount').textContent = d.same.length;
+  document.getElementById('addedNames').textContent = d.added.join(', ') || 'None';
+  document.getElementById('removedNames').textContent = d.removed.join(', ') || 'None';
+  document.getElementById('sameNames').textContent = d.same.join(', ') || 'None';
+
+  document.getElementById('versionATitle').textContent = a.label;
+  document.getElementById('versionBTitle').textContent = b.label;
+  document.getElementById('versionADate').textContent = a.date;
+  document.getElementById('versionBDate').textContent = b.date;
+  document.getElementById('stackA').innerHTML = stackHTML(a,d,'A');
+  document.getElementById('stackB').innerHTML = stackHTML(b,d,'B');
+
+  document.getElementById('sourceA').textContent = a.source;
+  document.getElementById('sourceB').textContent = b.source;
+  document.getElementById('marketA').textContent = a.market;
+  document.getElementById('marketB').textContent = b.market;
+}
+search.addEventListener('input',()=>renderProducts(search.value));
+versionA.addEventListener('change',renderDiff);
+versionB.addEventListener('change',renderDiff);
+document.getElementById('watchProductButton').addEventListener('click',toggleProductWatch);
+
+renderWatch();
+renderProducts();
+setupVersions();
+renderDiff();
+updateWatchButton();
+</script>
+</body>
+</html>
