@@ -96,6 +96,9 @@
     .knowledge-options,.module-quiz-options{display:grid;gap:.6rem;margin-top:.9rem}
     .knowledge-options button,.module-quiz-options button{text-align:left;border:1px solid var(--line);background:#fff;color:var(--blue);padding:.74rem .82rem;font-size:.78rem;cursor:pointer}
     .quiz-feedback,.module-quiz-feedback{min-height:1.4rem;margin-top:.75rem;color:#5d7288;font-size:.8rem;font-weight:600}
+    .quiz-card .module-quiz{margin-top:.85rem}
+    .quiz-card .module-quiz + .module-quiz{margin-top:1.15rem;padding-top:1.15rem;border-top:1px solid var(--line)}
+    .quiz-card .module-quiz h5{margin:0;color:var(--blue);font-family:"Avenir Next","Segoe UI",Arial,sans-serif;font-size:.94rem;line-height:1.45}
     .note-strip{margin-top:1rem;padding:1rem 1.1rem;border:1px solid var(--line);background:#fff;color:#5f758a;font-size:.82rem;line-height:1.65}
     .triple-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
     .mini-card{padding:1rem;border:1px solid var(--line);background:#fff;min-height:15rem}
@@ -391,12 +394,13 @@
         </div>
         <div class="library-grid">
           
+      
       <details class="module-card" open>
         <summary>
           <div class="module-summary">
             <span class="module-chip">Skin Foundations</span>
-            <strong>Module 1. Skin Anatomy and Function</strong>
-            <p>Layers of the skin, barrier structure, follicles, glands, vessels, and core anatomy.</p>
+            <strong>Module 1. Intro to Skin</strong>
+            <p>The three skin layers, skin color, everyday care, and what dermatologists do.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -404,7 +408,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module1_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -420,31 +424,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Skin Anatomy and Function</h4>
-              <p>Your skin has distinct layers with different jobs. The epidermis forms the outer barrier, while deeper layers contain structures such as follicles, glands, nerves, blood vessels, and fat.</p>
+              <h4>Intro to Skin</h4>
+              <p>Skin has three main layers with different roles. The epidermis makes new cells and melanin, the dermis contains structures such as sweat and oil glands, nerves, hair roots, and blood vessels, and subcutaneous fat cushions and insulates the body.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Which layer serves as the skin's most direct external barrier?</h4>
-              <div class="module-quiz" data-module="1" data-explanation="Correct. The epidermis is the outermost skin layer and forms the direct barrier to the environment.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Epidermis</button>
-<button type="button" data-choice="1" data-correct="false">Hypodermis</button>
-<button type="button" data-choice="2" data-correct="false">Muscle fascia</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="1" data-explanation="Correct. The epidermis is the outermost of the three main skin layers.">
+                  <h5>1. Which layer is the outermost layer of skin?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Epidermis</button>
+                    <button type="button" data-choice="1" data-correct="false">Dermis</button>
+                    <button type="button" data-choice="2" data-correct="false">Subcutaneous fat</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="1" data-explanation="Correct. Melanin is the pigment that contributes to skin color.">
+                  <h5>2. What does melanin help determine?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Skin color</button>
+                    <button type="button" data-choice="1" data-correct="false">How fast nails grow</button>
+                    <button type="button" data-choice="2" data-correct="false">How much sweat is produced</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="1" data-explanation="Correct. The dermis contains structures such as sweat glands, nerves, hair roots, oil glands, and blood vessels.">
+                  <h5>3. Which structure is associated with the dermis?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Sweat glands, nerves, and hair roots</button>
+                    <button type="button" data-choice="1" data-correct="false">The liver and kidneys</button>
+                    <button type="button" data-choice="2" data-correct="false">Only dead skin cells</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Skin Foundations</span>
-            <strong>Module 2. What Skin Does</strong>
-            <p>Barrier roles, temperature regulation, sensation, and protective functions.</p>
+            <span class="module-chip">Everyday Care</span>
+            <strong>Module 2. Daily Skin Care</strong>
+            <p>Handwashing, face washing, showering, shaving, and everyday sunscreen habits.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -452,7 +478,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module2_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -468,31 +494,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>What Skin Does</h4>
-              <p>Your skin protects your body, helps you sense the environment, and plays a role in temperature regulation and other everyday functions.</p>
+              <h4>Daily Skin Care</h4>
+              <p>Daily skin care is built around gentle habits. The lesson emphasizes proper handwashing, gentle face washing, regular bathing, careful shaving, and daily sun protection for every skin tone.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Which option best matches a major skin function?</h4>
-              <div class="module-quiz" data-module="2" data-explanation="Correct. Skin protects the body, helps regulate temperature, and supports sensation.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Protection, sensation, and thermoregulation</button>
-<button type="button" data-choice="1" data-correct="false">Making blood cells</button>
-<button type="button" data-choice="2" data-correct="false">Filtering urine</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="2" data-explanation="Correct. The lesson teaches scrubbing with soap for at least 20 seconds.">
+                  <h5>1. How long should you scrub your hands with soap?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">At least 20 seconds</button>
+                    <button type="button" data-choice="1" data-correct="false">About 3 seconds</button>
+                    <button type="button" data-choice="2" data-correct="false">Only until the soap foams</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="2" data-explanation="Correct. Gentle cleansing with lukewarm water is recommended, and harsh scrubbing can irritate skin.">
+                  <h5>2. Which face-washing habit best matches the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Use a gentle cleanser and avoid hard scrubbing</button>
+                    <button type="button" data-choice="1" data-correct="false">Scrub as hard as possible</button>
+                    <button type="button" data-choice="2" data-correct="false">Use very hot water every time</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="2" data-explanation="Correct. The lesson recommends broad-spectrum, water-resistant sunscreen with SPF 30 or higher.">
+                  <h5>3. Which sunscreen choice best matches the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Broad-spectrum, water-resistant SPF 30 or higher</button>
+                    <button type="button" data-choice="1" data-correct="false">Any sunscreen only on very sunny days</button>
+                    <button type="button" data-choice="2" data-correct="false">SPF 5 used once a week</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
             <span class="module-chip">Skin Foundations</span>
-            <strong>Module 3. Everyday Skin Care</strong>
-            <p>Cleansing, moisturization, and practical skin care habits.</p>
+            <strong>Module 3. The Truth About Our Skin</strong>
+            <p>Germs, hand hygiene, fungi, warts, lice, and common skin-health myths.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -500,7 +548,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module3_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -516,31 +564,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Everyday Skin Care</h4>
-              <p>Gentle cleansing and moisturizing can help support the skin barrier. A simple routine is often easier to follow and less likely to irritate sensitive skin.</p>
+              <h4>The Truth About Our Skin</h4>
+              <p>Good hygiene helps limit the spread of germs. The lesson also corrects common myths about fungi, warts, and lice, including that fungi prefer warm, damp environments and lice spread mainly through close head-to-head contact.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Why can moisturizers be useful in basic skin care?</h4>
-              <div class="module-quiz" data-module="3" data-explanation="Correct. Moisturizers help support the barrier and reduce transepidermal water loss.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">They can support the barrier and reduce water loss</button>
-<button type="button" data-choice="1" data-correct="false">They permanently remove pigment</button>
-<button type="button" data-choice="2" data-correct="false">They replace all cleansing</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="3" data-explanation="Correct. The lesson explains that fungi do well in warm, wet environments.">
+                  <h5>1. Where are skin and nail fungi especially likely to thrive?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Warm, damp places</button>
+                    <button type="button" data-choice="1" data-correct="false">Very dry paper surfaces only</button>
+                    <button type="button" data-choice="2" data-correct="false">Inside bones</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="3" data-explanation="Correct. Lice crawl and commonly spread through direct head-to-head contact.">
+                  <h5>2. How do head lice most commonly spread?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Head-to-head contact</button>
+                    <button type="button" data-choice="1" data-correct="false">By flying across a room</button>
+                    <button type="button" data-choice="2" data-correct="false">From frogs</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="3" data-explanation="Correct. The lesson treats soap and water as the first choice for hand cleaning.">
+                  <h5>3. What is the first choice for cleaning visibly dirty hands?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Soap and water</button>
+                    <button type="button" data-choice="1" data-correct="false">Perfume</button>
+                    <button type="button" data-choice="2" data-correct="false">Body lotion</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Protection + Prevention</span>
-            <strong>Module 4. Sun Safety</strong>
-            <p>Uv exposure, sun protection, and prevention strategies.</p>
+            <span class="module-chip">Hair + Nails</span>
+            <strong>Module 4. Healthy Hair and Nails</strong>
+            <p>Hair follicles, hair care, alopecia, and the basic anatomy of the nail.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -548,7 +618,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module4_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -564,31 +634,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Sun Safety</h4>
-              <p>Sun protection works best when several strategies are used together, including shade, protective clothing, and broad-spectrum sunscreen.</p>
+              <h4>Healthy Hair and Nails</h4>
+              <p>The lesson covers how hair grows and varies, basic hair care, alopecia, and nail anatomy. For nails, the matrix produces new cells, the cuticle helps protect the matrix, and the lunula is the visible half-moon area that is part of the matrix.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Which option best reflects a sun-safety strategy?</h4>
-              <div class="module-quiz" data-module="4" data-explanation="Correct. Sun protection works best as a combination of sunscreen and behavioral protection.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Broad-spectrum sunscreen plus protective habits</button>
-<button type="button" data-choice="1" data-correct="false">Only rinsing with water after exposure</button>
-<button type="button" data-choice="2" data-correct="false">Ignoring shade and protective clothing</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="4" data-explanation="Correct. The matrix is the growth area that continually makes new nail cells.">
+                  <h5>1. Which part of the nail keeps producing new nail cells?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Matrix</button>
+                    <button type="button" data-choice="1" data-correct="false">Cuticle</button>
+                    <button type="button" data-choice="2" data-correct="false">Tip of the finger</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="4" data-explanation="Correct. The cuticle helps protect the matrix from germs.">
+                  <h5>2. What is one job of the cuticle?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Helping protect the nail matrix from germs</button>
+                    <button type="button" data-choice="1" data-correct="false">Making hair pigment</button>
+                    <button type="button" data-choice="2" data-correct="false">Producing sweat</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="4" data-explanation="Correct. The lunula is the lighter half-moon area and is part of the nail matrix.">
+                  <h5>3. What is the lunula?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">The lighter half-moon area that is part of the matrix</button>
+                    <button type="button" data-choice="1" data-correct="false">A type of hair follicle</button>
+                    <button type="button" data-choice="2" data-correct="false">A sweat gland</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Conditions</span>
-            <strong>Module 5. Acne</strong>
-            <p>Follicles, sebum, keratin, inflammation, and common acne concepts.</p>
+            <span class="module-chip">Protection + Prevention</span>
+            <strong>Module 5. Bug Bites &amp; Poisonous Plants</strong>
+            <p>Bites, stings, ticks, Lyme disease, poisonous plants, prevention, and when to get help.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -596,7 +688,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module5_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -612,31 +704,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Acne</h4>
-              <p>Acne develops in the pilosebaceous unit, where hair follicles, sebum, keratin, and inflammation can interact.</p>
+              <h4>Bug Bites &amp; Poisonous Plants</h4>
+              <p>Most bites are minor, but some exposures require prompt help. The lesson covers bee stings, spiders, ticks and Lyme disease, poison ivy and poison oak, outdoor prevention, and checking the skin after wooded or grassy activities.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Acne is most closely tied to which structure?</h4>
-              <div class="module-quiz" data-module="5" data-explanation="Correct. Acne centers on the pilosebaceous unit, including the hair follicle and sebaceous gland.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">The pilosebaceous unit</button>
-<button type="button" data-choice="1" data-correct="false">The kidney tubule</button>
-<button type="button" data-choice="2" data-correct="false">The alveolus</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="5" data-explanation="Correct. The lesson identifies the black-legged tick as the tick associated with Lyme disease.">
+                  <h5>1. Which tick is associated with Lyme disease in the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Black-legged tick</button>
+                    <button type="button" data-choice="1" data-correct="false">Ladybug</button>
+                    <button type="button" data-choice="2" data-correct="false">Housefly</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="5" data-explanation="Correct. The lesson recommends washing with soap and water after exposure.">
+                  <h5>2. What should you do after contact with poison ivy or poison oak?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Wash the exposed area with soap and water</button>
+                    <button type="button" data-choice="1" data-correct="false">Rub the plant material deeper into the skin</button>
+                    <button type="button" data-choice="2" data-correct="false">Ignore the exposure and touch your face</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="5" data-explanation="Correct. Protective clothing, staying aware outdoors, and checking the skin afterward are emphasized.">
+                  <h5>3. Which habit helps lower the risk of tick and plant exposure outdoors?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Wear protective clothing and check your skin afterward</button>
+                    <button type="button" data-choice="1" data-correct="false">Wear strong perfume to attract insects</button>
+                    <button type="button" data-choice="2" data-correct="false">Touch unfamiliar plants to identify them</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
             <span class="module-chip">Conditions</span>
-            <strong>Module 6. Eczema</strong>
-            <p>Barrier dysfunction, itch, inflammation, and triggers.</p>
+            <strong>Module 6. All About Acne</strong>
+            <p>How acne forms, common acne types, prevention, treatment, and emotional effects.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -644,7 +758,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module6_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -660,31 +774,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Eczema</h4>
-              <p>Eczema often involves a weakened skin barrier, dryness, itch, and inflammation. Triggers and symptoms can vary from person to person.</p>
+              <h4>All About Acne</h4>
+              <p>Acne develops when pores become clogged with oil, dead skin cells, and bacteria. Hormonal changes are a common driver, some products can worsen breakouts, and picking or squeezing can increase the risk of irritation, infection, and scarring.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Which idea is most associated with eczema?</h4>
-              <div class="module-quiz" data-module="6" data-explanation="Correct. Eczema is strongly associated with barrier dysfunction, itch, and inflammation.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Barrier dysfunction with itch and inflammation</button>
-<button type="button" data-choice="1" data-correct="false">Excess melanin production</button>
-<button type="button" data-choice="2" data-correct="false">Calcified plaques in blood vessels</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="6" data-explanation="Correct. The lesson describes clogged pores containing oil, dead skin cells, and bacteria.">
+                  <h5>1. What combination can clog a pore and contribute to a pimple?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Oil, dead skin cells, and bacteria</button>
+                    <button type="button" data-choice="1" data-correct="false">Only water</button>
+                    <button type="button" data-choice="2" data-correct="false">Bone and muscle cells</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="6" data-explanation="Correct. The lesson says stress can worsen acne but is not the main cause.">
+                  <h5>2. Which statement about stress and acne matches the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Stress can make acne worse, but it is not presented as the main cause</button>
+                    <button type="button" data-choice="1" data-correct="false">Stress is the only cause of acne</button>
+                    <button type="button" data-choice="2" data-correct="false">Stress permanently cures acne</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="6" data-explanation="Correct. Picking and squeezing can worsen the skin and raise the risk of scars or infection.">
+                  <h5>3. Why is picking or squeezing acne discouraged?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">It can increase irritation, infection, or scarring</button>
+                    <button type="button" data-choice="1" data-correct="false">It always prevents new breakouts</button>
+                    <button type="button" data-choice="2" data-correct="false">It removes the need for skin care</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Conditions</span>
-            <strong>Module 7. Psoriasis</strong>
-            <p>Rapid skin turnover, plaques, inflammation, and pattern recognition.</p>
+            <span class="module-chip">Protection + Prevention</span>
+            <strong>Module 7. Sun Safety</strong>
+            <p>Sun damage, sunscreen labels, protective habits, tanning-bed risks, and safer sun behavior.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -692,7 +828,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module7_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -708,31 +844,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Psoriasis</h4>
-              <p>Psoriasis is an inflammatory skin condition associated with faster-than-usual skin-cell turnover and characteristic plaques.</p>
+              <h4>Sun Safety</h4>
+              <p>Sun safety is for every skin tone. The lesson explains sunscreen labels, including SPF, broad-spectrum protection, and water resistance, while also emphasizing protective clothing and avoiding harmful UV exposure.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Psoriasis is commonly explained using which concept?</h4>
-              <div class="module-quiz" data-module="7" data-explanation="Correct. Psoriasis is commonly framed around increased turnover and inflammation.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Accelerated skin turnover with inflammation</button>
-<button type="button" data-choice="1" data-correct="false">Loss of all sebaceous glands</button>
-<button type="button" data-choice="2" data-correct="false">Bacterial invasion of bone</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="7" data-explanation="Correct. Broad-spectrum sunscreen is intended to protect against both UVA and UVB rays.">
+                  <h5>1. What does “broad spectrum” mean on a sunscreen label?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">It helps protect against both UVA and UVB rays</button>
+                    <button type="button" data-choice="1" data-correct="false">It only protects against visible light</button>
+                    <button type="button" data-choice="2" data-correct="false">It means the sunscreen never needs reapplication</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="7" data-explanation="Correct. The lesson recommends SPF 30 or higher.">
+                  <h5>2. What SPF level does the AAD lesson recommend as a minimum target?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">SPF 30</button>
+                    <button type="button" data-choice="1" data-correct="false">SPF 2</button>
+                    <button type="button" data-choice="2" data-correct="false">SPF 8</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="7" data-explanation="Correct. The label describes how long the sunscreen maintains protection during water exposure.">
+                  <h5>3. What does “water resistant (40 minutes)” mean?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Protection is maintained for the stated time while in water</button>
+                    <button type="button" data-choice="1" data-correct="false">The sunscreen is waterproof forever</button>
+                    <button type="button" data-choice="2" data-correct="false">The sunscreen only works indoors</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Conditions</span>
-            <strong>Module 8. Vitiligo</strong>
-            <p>Pigment loss, melanocytes, and clinical context.</p>
+            <span class="module-chip">Skin + Wellbeing</span>
+            <strong>Module 8. Love the Skin You’re In</strong>
+            <p>Self-esteem, confidence, bullying, and understanding that social-media images may be edited.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -740,7 +898,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="AAD_GSK_Module8_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -756,31 +914,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Vitiligo</h4>
-              <p>Vitiligo involves loss of pigment when melanocytes are lost or stop functioning normally. Vitiligo is not contagious.</p>
+              <h4>Love the Skin You’re In</h4>
+              <p>This module connects skin education with confidence and self-esteem. It also addresses bullying and reminds students that edited social-media images and selfies are not always accurate representations of real life.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Vitiligo most directly involves changes in which cells?</h4>
-              <div class="module-quiz" data-module="8" data-explanation="Correct. Vitiligo involves the loss or dysfunction of melanocytes, which produce pigment.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Melanocytes</button>
-<button type="button" data-choice="1" data-correct="false">Platelets</button>
-<button type="button" data-choice="2" data-correct="false">Hepatocytes</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="8" data-explanation="Correct. The lesson emphasizes that social-media images can be altered and may not show reality.">
+                  <h5>1. Why should you be cautious about comparing yourself with social-media images?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Images may be edited and may not reflect reality</button>
+                    <button type="button" data-choice="1" data-correct="false">Every image online is completely unedited</button>
+                    <button type="button" data-choice="2" data-correct="false">Social media always shows a person’s full life</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="8" data-explanation="Correct. Building self-esteem and confidence is a central learning goal.">
+                  <h5>2. Which idea best fits this module?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Building self-esteem and confidence</button>
+                    <button type="button" data-choice="1" data-correct="false">Ranking people by appearance</button>
+                    <button type="button" data-choice="2" data-correct="false">Trying to look exactly like someone else</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="8" data-explanation="Correct. The lesson includes recognizing bullying and helping friends who are experiencing it.">
+                  <h5>3. How does the module frame bullying?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">As something students should know how to respond to and help friends with</button>
+                    <button type="button" data-choice="1" data-correct="false">As harmless entertainment</button>
+                    <button type="button" data-choice="2" data-correct="false">As a required part of social media</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Protection + Prevention</span>
-            <strong>Module 9. Bites, Stings, and Plants</strong>
-            <p>Common exposures, skin reactions, and prevention.</p>
+            <span class="module-chip">Conditions</span>
+            <strong>Module 9. Eczema</strong>
+            <p>What eczema is, common triggers, how it can look, what can help, and how to support someone with it.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -788,7 +968,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="_AAD_GSK_Module9_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -804,31 +984,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Bites, Stings, and Plants</h4>
-              <p>Bites, stings, and plant exposures can cause different skin reactions. Prevention and knowing when to seek medical help are important parts of skin safety.</p>
+              <h4>Eczema</h4>
+              <p>Eczema can be very itchy and can appear anywhere on the body. The lesson describes a weakened skin barrier, triggers such as soap, dust, and pollution, the use of moisturizers for comfort, and the fact that eczema is not contagious.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>What is a major goal of this lesson type?</h4>
-              <div class="module-quiz" data-module="9" data-explanation="Correct. This lesson centers on exposure recognition, reactions, and prevention.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Recognizing exposures and prevention strategies</button>
-<button type="button" data-choice="1" data-correct="false">Ranking cosmetic brands</button>
-<button type="button" data-choice="2" data-correct="false">Diagnosing heart disease</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="9" data-explanation="Correct. The lesson clearly states that eczema is not contagious.">
+                  <h5>1. Which statement about eczema is correct?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">It is not contagious</button>
+                    <button type="button" data-choice="1" data-correct="false">It spreads by touching someone with eczema</button>
+                    <button type="button" data-choice="2" data-correct="false">It is caused by poor hygiene</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="9" data-explanation="Correct. Moisturizers are presented as one way to help eczema feel better.">
+                  <h5>2. What can help make eczema feel better in the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Moisturizers</button>
+                    <button type="button" data-choice="1" data-correct="false">Scratching harder</button>
+                    <button type="button" data-choice="2" data-correct="false">Strong fragrance</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="9" data-explanation="Correct. The worksheet lists examples such as soap, dust, and pollution as triggers.">
+                  <h5>3. Which can act as an eczema trigger?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Soap, dust, or pollution</button>
+                    <button type="button" data-choice="1" data-correct="false">A math worksheet</button>
+                    <button type="button" data-choice="2" data-correct="false">Eye color</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Skin + Wellbeing</span>
-            <strong>Module 10. Skin and Self-Esteem</strong>
-            <p>Appearance, confidence, and psychosocial aspects of skin.</p>
+            <span class="module-chip">Conditions</span>
+            <strong>Module 10. Psoriasis</strong>
+            <p>What psoriasis is, skin-cell turnover, triggers, appearance across skin tones, and supportive care.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -836,7 +1038,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="_AAD_GSK_Module10_FInal.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -852,31 +1054,53 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Skin and Self-Esteem</h4>
-              <p>Skin conditions can affect confidence, social experiences, and daily life. Emotional wellbeing is an important part of understanding skin health.</p>
+              <h4>Psoriasis</h4>
+              <p>Psoriasis causes scaly skin changes and involves skin cells growing too quickly. The lesson discusses differences across skin tones, triggers such as injury, stress, and weather, comfort measures, and the fact that psoriasis is not contagious.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Why does this lesson belong in the curriculum?</h4>
-              <div class="module-quiz" data-module="10" data-explanation="Correct. Skin education also intersects with emotion, confidence, and social experience.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Skin conditions can affect confidence and lived experience</button>
-<button type="button" data-choice="1" data-correct="false">Only to teach ingredient chemistry</button>
-<button type="button" data-choice="2" data-correct="false">Only to teach microscopy</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="10" data-explanation="Correct. The lesson explains psoriasis using faster-than-normal skin-cell growth.">
+                  <h5>1. What happens to skin-cell growth in psoriasis according to the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Skin cells grow too quickly</button>
+                    <button type="button" data-choice="1" data-correct="false">Skin cells stop growing completely</button>
+                    <button type="button" data-choice="2" data-correct="false">Only hair cells grow faster</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="10" data-explanation="Correct. Injury, stress, and weather are listed as examples of triggers.">
+                  <h5>2. Which group includes examples of psoriasis triggers from the lesson?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Injury, stress, and weather</button>
+                    <button type="button" data-choice="1" data-correct="false">Reading, music, and pencils</button>
+                    <button type="button" data-choice="2" data-correct="false">Eye color, height, and shoe size</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="10" data-explanation="Correct. The lesson states that psoriasis is not contagious.">
+                  <h5>3. Is psoriasis contagious?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">No</button>
+                    <button type="button" data-choice="1" data-correct="false">Yes, always</button>
+                    <button type="button" data-choice="2" data-correct="false">Only in cold weather</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
       </details>
 
-      <details class="module-card" >
+      
+      <details class="module-card">
         <summary>
           <div class="module-summary">
-            <span class="module-chip">Review</span>
-            <strong>Module 11. Wrap-Up and Review</strong>
-            <p>Review and knowledge consolidation.</p>
+            <span class="module-chip">Conditions</span>
+            <strong>Module 11. Vitiligo</strong>
+            <p>Pigment loss, melanocytes, common locations, emotional effects, and how to support someone with vitiligo.</p>
           </div>
           <span class="summary-action">Open lesson</span>
         </summary>
@@ -884,7 +1108,7 @@
           <div class="module-utility-row">
             <div class="module-notes">
               <span class="meta-label">Lesson material</span>
-              <p>Read through the lesson at your own pace, then use the concept check below to review the main idea.</p>
+              <p>Read through the lesson at your own pace, then use the expanded knowledge check below to review the key ideas.</p>
             </div>
             <div class="module-links">
               <a href="_AAD_GSK_Module11_Final.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a>
@@ -900,20 +1124,41 @@
           <div class="module-support-grid">
             <section class="support-card">
               <span class="support-kicker">What to remember</span>
-              <h4>Wrap-Up and Review</h4>
-              <p>The main ideas connect skin structure, common conditions, everyday care, and reliable evidence so you can understand skin information more clearly.</p>
+              <h4>Vitiligo</h4>
+              <p>Vitiligo causes areas of skin to lose color and can affect people of every skin tone. The lesson explains the role of melanocytes and the immune system, notes that vitiligo is not contagious, and emphasizes listening and being a supportive friend.</p>
             </section>
             <section class="support-card quiz-card">
-              <span class="support-kicker">Knowledge check</span>
-              <h4>Which approach best helps you review the main ideas?</h4>
-              <div class="module-quiz" data-module="11" data-explanation="Correct. A good review connects skin biology, common conditions, everyday care, and reliable evidence.">
-                <div class="module-quiz-options">
-                  <button type="button" data-choice="0" data-correct="true">Connecting skin biology, conditions, everyday care, and evidence</button>
-<button type="button" data-choice="1" data-correct="false">Memorizing isolated buzzwords only</button>
-<button type="button" data-choice="2" data-correct="false">Skipping review entirely</button>
+              <span class="support-kicker">Knowledge check · 3 questions</span>
+              
+                <div class="module-quiz" data-module="11" data-explanation="Correct. The lesson explains that the immune system attacks melanocytes, the cells involved in skin pigment.">
+                  <h5>1. Which cells are targeted in the lesson’s explanation of vitiligo?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Melanocytes</button>
+                    <button type="button" data-choice="1" data-correct="false">Red blood cells</button>
+                    <button type="button" data-choice="2" data-correct="false">Bone cells</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
                 </div>
-                <div class="module-quiz-feedback" aria-live="polite"></div>
-              </div>
+
+                <div class="module-quiz" data-module="11" data-explanation="Correct. The lesson states that people of all skin tones can develop vitiligo.">
+                  <h5>2. Who can develop vitiligo?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">People of all skin tones</button>
+                    <button type="button" data-choice="1" data-correct="false">Only people with very light skin</button>
+                    <button type="button" data-choice="2" data-correct="false">Only adults</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
+
+                <div class="module-quiz" data-module="11" data-explanation="Correct. The lesson states that vitiligo is not contagious.">
+                  <h5>3. Which statement about vitiligo is correct?</h5>
+                  <div class="module-quiz-options">
+                    <button type="button" data-choice="0" data-correct="true">Vitiligo is not contagious</button>
+                    <button type="button" data-choice="1" data-correct="false">Vitiligo spreads through casual contact</button>
+                    <button type="button" data-choice="2" data-correct="false">Vitiligo is caused by not washing the skin</button>
+                  </div>
+                  <div class="module-quiz-feedback" aria-live="polite"></div>
+                </div>
             </section>
           </div>
         </div>
